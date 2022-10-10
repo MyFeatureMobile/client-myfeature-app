@@ -1,4 +1,4 @@
-package com.myfeature.mobile.ui.theme
+package com.myfeature.mobile.core.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
@@ -7,16 +7,17 @@ import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 
 private val DarkColorPalette = darkColors(
-    primary = Purple200,
-    primaryVariant = Purple700,
-    secondary = Teal200
+    primary = Green99,
+    primaryVariant = Green99,
+    secondary = Green99,
+    background = White
 )
 
 private val LightColorPalette = lightColors(
-    primary = Purple500,
-    primaryVariant = Purple700,
-    secondary = Teal200
-
+    primary = Green99,
+    primaryVariant = Green99,
+    secondary = Green99,
+    background = White
     /* Other default colors to override
     background = Color.White,
     surface = Color.White,
@@ -28,7 +29,7 @@ private val LightColorPalette = lightColors(
 )
 
 @Composable
-fun ClientmyfeatureappTheme(
+fun AppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {

@@ -1,4 +1,4 @@
-package com.myfeature.mobile.ui.theme
+package com.myfeature.mobile.core.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

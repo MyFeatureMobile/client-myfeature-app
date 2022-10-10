@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">client-myfeature-app</string>
+    <string name="timeline_bottom_title">Timeline</string>
+    <string name="home_profile">Profile</string>
 </resources>
