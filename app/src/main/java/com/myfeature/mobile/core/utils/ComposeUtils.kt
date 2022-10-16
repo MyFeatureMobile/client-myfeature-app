@@ -5,9 +5,11 @@ import android.text.style.StyleSpan
 import android.text.style.UnderlineSpan
 import androidx.annotation.DimenRes
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.AnnotatedString
@@ -15,6 +17,8 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.sp
+
+val modifierMaxWidth = Modifier.fillMaxWidth()
 
 @Composable
 @ReadOnlyComposable

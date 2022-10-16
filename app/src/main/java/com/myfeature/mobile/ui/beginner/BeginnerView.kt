@@ -20,7 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.myfeature.mobile.core.theme.BlueGreen
-import com.myfeature.mobile.core.theme.Green99
+import com.myfeature.mobile.core.theme.ControlColor
 import com.myfeature.mobile.core.theme.White
 import com.myfeature.mobile.core.utils.Functions
 import com.myfeature.mobile.ui.Logo
@@ -44,15 +44,6 @@ fun BeginnerView(
       .fillMaxSize()
   ) {
     val (buttonBox, logo) = createRefs()
-    Logo(
-      modifier = Modifier
-        .constrainAs(logo) {
-          bottom.linkTo(buttonBox.top)
-          start.linkTo(parent.start)
-          end.linkTo(parent.end)
-        }
-        .padding(bottom = 160.dp)
-    )
     Box(
       modifier = modifier
         .constrainAs(buttonBox) {
@@ -74,7 +65,7 @@ fun BeginnerView(
         Button(
           onClick = { onLogIn.invoke() },
           colors = ButtonDefaults.textButtonColors(
-            backgroundColor = Green99,
+            backgroundColor = ControlColor,
             contentColor = White
           ),
           modifier = Modifier
@@ -89,7 +80,7 @@ fun BeginnerView(
         Button(
           onClick = { onSignUp.invoke() },
           colors = ButtonDefaults.textButtonColors(
-            backgroundColor = Green99,
+            backgroundColor = ControlColor,
             contentColor = White
           ),
           modifier = Modifier
@@ -104,6 +95,15 @@ fun BeginnerView(
         }
       }
     }
+    Logo(
+      modifier = Modifier
+        .constrainAs(logo) {
+          bottom.linkTo(buttonBox.top)
+          start.linkTo(parent.start)
+          end.linkTo(parent.end)
+        }
+        .padding(bottom = 40.dp)
+    )
   }
 }
 

@@ -2,7 +2,6 @@ package com.myfeature.mobile.ui.beginner.login
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.text.KeyboardActions
@@ -28,17 +27,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.myfeature.mobile.R
-import com.myfeature.mobile.core.theme.Green99
+import com.myfeature.mobile.core.theme.ControlColor
 import com.myfeature.mobile.core.theme.TextColor
 import com.myfeature.mobile.core.theme.TextFieldHint
 import com.myfeature.mobile.core.theme.White
 import com.myfeature.mobile.core.theme.featTextFieldColors
 import com.myfeature.mobile.core.utils.annotatedStringResource
 import com.myfeature.mobile.core.utils.fontDimensionResource
+import com.myfeature.mobile.core.utils.modifierMaxWidth
 import com.myfeature.mobile.ui.Logo
 import com.myfeature.mobile.ui.common.ScrollableTextField
 
-private val modifierMaxWidth = Modifier.fillMaxWidth()
 
 @Composable
 fun LoginView(
@@ -57,15 +56,6 @@ fun LoginView(
       .padding(32.dp)
   ) {
     val (inputForm, logo) = createRefs()
-    Logo(
-      modifier = Modifier
-        .constrainAs(logo) {
-          bottom.linkTo(inputForm.top)
-          start.linkTo(parent.start)
-          end.linkTo(parent.end)
-        }
-        .padding(bottom = 40.dp)
-    )
     Column(
       modifier = modifierMaxWidth
         .constrainAs(inputForm) {
@@ -113,7 +103,7 @@ fun LoginView(
           onLogInClick.invoke()
         },
         colors = ButtonDefaults.textButtonColors(
-          backgroundColor = Green99,
+          backgroundColor = ControlColor,
           contentColor = White
         ),
       ) {
@@ -155,6 +145,15 @@ fun LoginView(
         )
       }
     }
+    Logo(
+      modifier = Modifier
+        .constrainAs(logo) {
+          bottom.linkTo(inputForm.top)
+          start.linkTo(parent.start)
+          end.linkTo(parent.end)
+        }
+        .padding(bottom = 40.dp)
+    )
   }
   if (openDialog.value) {
     AlertDialog(

@@ -47,7 +47,7 @@ fun App() {
 
         }
         composable(REGISTER_PART_ROUTE) {
-          RegisterView()
+          RegisterView(onInputFinished = { _, _ -> appState.navController.navigate(WELCOME_ROUTE) })
         }
       }
     }

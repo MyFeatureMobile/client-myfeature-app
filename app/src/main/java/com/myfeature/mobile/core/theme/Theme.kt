@@ -10,22 +10,24 @@ import androidx.compose.ui.graphics.Color
 
 @SuppressLint("ConflictingOnColor")
 private val DarkColorPalette = darkColors(
-  primary = Green99,
-  primaryVariant = Green99,
-  secondary = Green99,
-  background = White,
+  primary = ControlColor,
+  primaryVariant = ControlColor,
+  secondary = ControlColor,
+  background = BackgroundFill,
   onBackground = Color.Black,
-  onSecondary = Color.White
+  onSecondary = Color.White,
+  onPrimary = Color.White
 )
 
 @SuppressLint("ConflictingOnColor")
 private val LightColorPalette = lightColors(
-  primary = Green99,
-  primaryVariant = Green99,
-  secondary = Green99,
-  background = White,
+  primary = ControlColor,
+  primaryVariant = ControlColor,
+  secondary = ControlColor,
+  background = BackgroundFill,
   onBackground = Color.Black,
-  onSecondary = Color.White
+  onSecondary = Color.White,
+  onPrimary = Color.White
   /* Other default colors to override
   background = Color.White,
   surface = Color.White,

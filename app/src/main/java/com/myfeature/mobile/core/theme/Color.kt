@@ -8,9 +8,11 @@ val Purple500 = Color(0xFF6200EE)
 val Purple700 = Color(0xFF3700B3)
 val Teal200 = Color(0xFF03DAC5)
 
-val Green99 = Color(parseColor("#57CC99"))
+val ControlColor = Color(parseColor("#57CC99"))
+val ControlDisabledColor = Color(parseColor("#6657CC99"))
 val White = Color(parseColor("#ffffff"))
 val BlueGreen = Color(parseColor("#3338A3A5"))
+val BackgroundFill = Color(parseColor("#F4F8FB"))
 
 val DividerGray = Color(parseColor("#FF545454"))
 
