@@ -11,3 +11,10 @@ val Teal200 = Color(0xFF03DAC5)
 val Green99 = Color(parseColor("#57CC99"))
 val White = Color(parseColor("#ffffff"))
 val BlueGreen = Color(parseColor("#3338A3A5"))
+
+val DividerGray = Color(parseColor("#FF545454"))
+
+val TextFieldBackground = Color(parseColor("#EAEAEA"))
+val TextFieldHint = Color(parseColor("#535353"))
+val TextColor = Color.Black
+val TextOnButtonColor = Color.White

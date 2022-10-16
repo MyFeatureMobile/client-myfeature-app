@@ -1,6 +1,5 @@
 package com.myfeature.mobile.ui.beginner
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -17,16 +16,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
-import com.myfeature.mobile.R
 import com.myfeature.mobile.core.theme.BlueGreen
 import com.myfeature.mobile.core.theme.Green99
 import com.myfeature.mobile.core.theme.White
 import com.myfeature.mobile.core.utils.Functions
+import com.myfeature.mobile.ui.Logo
 
 private val paddingButtons = 4.dp
 
@@ -47,10 +44,7 @@ fun BeginnerView(
       .fillMaxSize()
   ) {
     val (buttonBox, logo) = createRefs()
-    Image(
-      painter = painterResource(id = R.drawable.ic_logo),
-      contentDescription = "",
-      contentScale = ContentScale.Crop,
+    Logo(
       modifier = Modifier
         .constrainAs(logo) {
           bottom.linkTo(buttonBox.top)
@@ -59,7 +53,6 @@ fun BeginnerView(
         }
         .padding(bottom = 160.dp)
     )
-
     Box(
       modifier = modifier
         .constrainAs(buttonBox) {

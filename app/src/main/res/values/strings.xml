@@ -1,5 +1,16 @@
 <resources>
-    <string name="app_name">client-myfeature-app</string>
-    <string name="timeline_bottom_title">Timeline</string>
-    <string name="home_profile">Profile</string>
+  <string name="app_name">client-myfeature-app</string>
+  <string name="timeline_bottom_title">Timeline</string>
+  <string name="home_profile">Profile</string>
+
+  <string name="login_email_username_hint">Email address or username</string>
+  <string name="login_password_hint">Password</string>
+  <string name="login_button">Login</string>
+  <string name="login_forgot_details">Forgotten your login details?\n<b>Get help with logging in</b></string>
+  <string name="login_create_account_button">Don’t have an account? <b>Sign up.</b></string>
+
+  <string name="login_cant_find_account">Can\'t find account</string>
+  <string name="login_incorrect_password_title">Incorrect password</string>
+  <string name="login_incorrect_password_body">The password that you\'ve entered is incorrect. Please try again</string>
+  <string name="login_incorrect_password_dismiss">OK</string>
 </resources>

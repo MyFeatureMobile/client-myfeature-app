@@ -33,10 +33,15 @@ fun App() {
         composable(WELCOME_ROUTE) {
           BeginnerView(
             onLogIn = { appState.navController.navigate(LOGIN_ROUTE) },
-            onSignUp = { appState.navController.navigate(REGISTER_PART_ROUTE) })
+            onSignUp = { appState.navController.navigate(REGISTER_PART_ROUTE) }
+          )
         }
         composable(LOGIN_ROUTE) {
-          LoginView()
+          LoginView(
+            onLogInClick = {},
+            onGoSignIn = { appState.navController.navigate(REGISTER_PART_ROUTE) },
+            onRestoreAccess = {}
+          )
         }
         composable(BEGINNER) {
 
