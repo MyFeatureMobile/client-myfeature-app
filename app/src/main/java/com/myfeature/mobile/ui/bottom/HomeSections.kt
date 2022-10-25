@@ -6,7 +6,7 @@ import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.myfeature.mobile.R
-import com.myfeature.mobile.ui.navigation.MainDestinations.MAIN_ROUTE
+import com.myfeature.mobile.ui.navigation.BeginnerDestinations.MAIN_ROUTE
 
 enum class HomeSections(
     @StringRes val title: Int,
