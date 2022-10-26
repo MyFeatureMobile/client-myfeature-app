@@ -1,6 +1,7 @@
 <resources>
   <string name="app_name">MyFeature</string>
   <string name="timeline_bottom_title">Timeline</string>
+  <string name="favourites_bottom_title">Favourites</string>
   <string name="home_profile">Profile</string>
 
   <string name="login_email_username_hint">Email address or username</string>
