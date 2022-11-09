@@ -5,6 +5,7 @@ internal object BeginnerDestinations {
   const val LOGIN_ROUTE = "login"
   const val BEGINNER = "beginner"
   const val WELCOME_ROUTE = "welcome"
+  const val LOADING = "loading"
   const val FIND_ACCOUNT_ROUTE = "find_account"
   const val FINISH_REGISTER_ROUTE = "finish_register"
 }

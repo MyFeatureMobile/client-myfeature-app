@@ -1,9 +1,6 @@
-package com.myfeature.mobile.ui.main
+package com.myfeature.mobile.ui.home
 
-import androidx.compose.material.DrawerState
-import androidx.compose.material.DrawerValue
 import androidx.compose.material.ScaffoldState
-import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.lifecycle.Lifecycle
@@ -12,14 +9,13 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.myfeature.mobile.ui.bottom.HomeSections
 
 @Stable
 class AppState(
   val scaffoldState: ScaffoldState,
   val navController: NavHostController
 ) {
-  val bottomBarTabs = HomeSections.values()
+  val bottomBarTabs = HomeScreens.values()
   private val bottomBarRoutes = bottomBarTabs.map { it.route }
 
   val shouldShowBottomBar: Boolean

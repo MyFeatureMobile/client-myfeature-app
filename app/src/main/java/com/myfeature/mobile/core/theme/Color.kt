@@ -20,3 +20,5 @@ val TextFieldBackground = Color(parseColor("#EAEAEA"))
 val TextFieldHint = Color(parseColor("#535353"))
 val TextColor = Color.Black
 val TextOnButtonColor = Color.White
+
+val LightBlueberry = Color(parseColor("#F4F8FB"))

@@ -1,9 +1,9 @@
-package com.myfeature.mobile.ui.main
+package com.myfeature.mobile.ui.home
 
 object MainDestinations {
   const val MAIN_ROUTE = "main"
 
   const val PROFILE = "profile"
   const val TIMELINE = "timeline"
-  const val SUBSCRIPTIONS = "subscriptions"
+  const val FOLLOWED = "followed"
 }
