@@ -22,7 +22,7 @@ import com.myfeature.mobile.core.theme.TextColor
 import com.myfeature.mobile.core.utils.Functions
 
 @Composable
-fun NameInProfileView(
+fun ProfileUserNameView(
   modifier: Modifier = Modifier,
   name: String = "Simon Kulyomin",
   onEditName: () -> Unit = Functions::empty
@@ -31,7 +31,7 @@ fun NameInProfileView(
     modifier = modifier,
     verticalAlignment = Alignment.CenterVertically
   ) {
-    Text(text = name, fontSize = 15.sp, fontWeight = FontWeight.Bold, color = TextColor)
+    Text(text = name, fontSize = 18.sp, fontWeight = FontWeight.Bold, color = TextColor)
     Icon(
       imageVector = Icons.Outlined.Edit,
       modifier = Modifier
@@ -50,5 +50,5 @@ fun NameInProfileView(
 @Preview
 @Composable
 fun PreviewName() {
-  NameInProfileView()
+  ProfileUserNameView()
 }

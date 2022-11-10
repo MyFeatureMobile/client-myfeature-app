@@ -51,7 +51,7 @@ fun Home(onLogOut: () -> Unit = Functions::empty) {
           .padding(
             start = it.calculateStartPadding(Ltr),
             end = it.calculateEndPadding(Ltr),
-            top = it.calculateTopPadding() + 24.dp,
+            top = it.calculateTopPadding(),
             bottom = it.calculateBottomPadding()
           )
           .background(MaterialTheme.colors.bgMain)

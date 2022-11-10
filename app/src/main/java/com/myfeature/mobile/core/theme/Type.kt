@@ -8,20 +8,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.myfeature.mobile.R
 
-val ralewayFontFamily = FontFamily(
-  Font(R.font.raleway_medium, weight = FontWeight.Normal),
-  Font(R.font.raleway_bold, weight = FontWeight.Bold)
+val moncerratFontFamily = FontFamily(
+  Font(R.font.monserrat_medium, weight = FontWeight.Normal),
+  Font(R.font.monserrat_bold, weight = FontWeight.Bold)
 )
 
 val Typography = Typography(
-  defaultFontFamily = ralewayFontFamily,
+  defaultFontFamily = moncerratFontFamily,
   body1 = TextStyle(
-    fontFamily = ralewayFontFamily,
+    fontFamily = moncerratFontFamily,
     fontWeight = FontWeight.Normal,
     fontSize = 16.sp
   ),
   button = TextStyle(
-    fontFamily = ralewayFontFamily,
+    fontFamily = moncerratFontFamily,
     fontWeight = FontWeight.Bold,
     fontSize = 16.sp
   )

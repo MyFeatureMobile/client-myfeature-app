@@ -16,4 +16,8 @@
   <string name="login_incorrect_password_dismiss">OK</string>
 
   <string name="login_welcome_to_my_feature_title">Welcome to MyFeature,\n%1$s</string>
+
+  <string name="profile_category_posts">Posts</string>
+  <string name="profile_category_followers">Followers</string>
+  <string name="profile_category_following">Following</string>
 </resources>
