@@ -18,7 +18,7 @@ fun HomeNavGraph(navController: NavHostController, modifier: Modifier = Modifier
   NavHost(
     navController = navController,
     route = MainDestinations.MAIN_ROUTE,
-    startDestination = TIMELINE.route
+    startDestination = DEFAULT_SCREEN.route
   ) {
     composable(route = FOLLOWING.route) {
       FollowingTimelineView(modifier)

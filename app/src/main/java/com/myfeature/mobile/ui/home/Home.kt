@@ -31,7 +31,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.myfeature.mobile.core.theme.AppTheme
-import com.myfeature.mobile.core.theme.backgroundBottomBar
+import com.myfeature.mobile.core.theme.barBackground
 import com.myfeature.mobile.core.theme.bgMain
 import com.myfeature.mobile.core.theme.controlMain
 import com.myfeature.mobile.core.utils.Functions
@@ -51,7 +51,7 @@ fun Home(onLogOut: () -> Unit = Functions::empty) {
           .padding(
             start = it.calculateStartPadding(Ltr),
             end = it.calculateEndPadding(Ltr),
-            top = it.calculateTopPadding(),
+            top = it.calculateTopPadding() + 24.dp,
             bottom = it.calculateBottomPadding()
           )
           .background(MaterialTheme.colors.bgMain)
@@ -70,7 +70,7 @@ fun BottomBar(navController: NavHostController) {
   if (bottomBarDestination) {
     val shape = RoundedCornerShape(15.dp, 15.dp, 0.dp, 0.dp)
     BottomNavigation(
-      backgroundColor = MaterialTheme.colors.backgroundBottomBar,
+      backgroundColor = MaterialTheme.colors.barBackground,
       modifier = Modifier
         .clip(shape)
         .shadow(elevation = 10.dp, shape = shape)
