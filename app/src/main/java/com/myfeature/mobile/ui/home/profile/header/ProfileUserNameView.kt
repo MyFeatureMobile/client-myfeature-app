@@ -1,4 +1,4 @@
-package com.myfeature.mobile.ui.home.profile
+package com.myfeature.mobile.ui.home.profile.header
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource

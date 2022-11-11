@@ -19,7 +19,7 @@ import com.myfeature.mobile.R
 import com.myfeature.mobile.R.dimen
 import com.myfeature.mobile.core.utils.Functions
 import com.myfeature.mobile.core.utils.modifierMaxWidth
-import com.myfeature.mobile.ui.beginner.Logo
+import com.myfeature.mobile.ui.common.Logo
 
 @Composable
 fun FinishRegisterView(

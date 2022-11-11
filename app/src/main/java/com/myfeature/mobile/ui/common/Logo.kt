@@ -1,4 +1,4 @@
-package com.myfeature.mobile.ui.beginner
+package com.myfeature.mobile.ui.common
 
 import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable

@@ -35,7 +35,7 @@ import com.myfeature.mobile.core.theme.featTextFieldColors
 import com.myfeature.mobile.core.utils.annotatedStringResource
 import com.myfeature.mobile.core.utils.fontDimensionResource
 import com.myfeature.mobile.core.utils.modifierMaxWidth
-import com.myfeature.mobile.ui.beginner.Logo
+import com.myfeature.mobile.ui.common.Logo
 import com.myfeature.mobile.ui.common.ScrollableTextField
 
 @Composable

@@ -9,7 +9,6 @@ import androidx.navigation.compose.composable
 import com.myfeature.mobile.ui.home.HomeScreens.FOLLOWING
 import com.myfeature.mobile.ui.home.HomeScreens.PROFILE
 import com.myfeature.mobile.ui.home.HomeScreens.TIMELINE
-import com.myfeature.mobile.ui.home.following.FollowingTimelineView
 import com.myfeature.mobile.ui.home.profile.ProfileView
 import com.myfeature.mobile.ui.home.timeline.TimelineView
 
@@ -21,7 +20,7 @@ fun HomeNavGraph(navController: NavHostController, modifier: Modifier = Modifier
     startDestination = DEFAULT_SCREEN.route
   ) {
     composable(route = FOLLOWING.route) {
-      FollowingTimelineView(modifier)
+      TimelineView(modifier, "Following")
     }
     composable(route = TIMELINE.route) {
       TimelineView(modifier)

@@ -15,6 +15,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.myfeature.mobile.data.TestData
+import com.myfeature.mobile.ui.home.common.PostItemView
+import com.myfeature.mobile.ui.home.profile.header.ProfileHeaderView
 import com.myfeature.mobile.ui.home.profile.model.Category
 import com.myfeature.mobile.ui.home.profile.model.Category.FOLLOWERS
 import com.myfeature.mobile.ui.home.profile.model.Category.FOLLOWING
@@ -46,7 +49,7 @@ fun ProfileView(modifier: Modifier = Modifier) {
     }
     when (selectedCategory.value) {
       POSTS -> {
-        buildPostsList(emptyList())
+        buildPostsList(posts = TestData.posts, modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp))
       }
       FOLLOWERS -> { /*TODO*/
       }
@@ -56,10 +59,10 @@ fun ProfileView(modifier: Modifier = Modifier) {
   }
 }
 
-fun LazyListScope.buildPostsList(posts: List<PostItem>) {
-  repeat(5) {
+fun LazyListScope.buildPostsList(posts: List<PostItem>, modifier: Modifier = Modifier) {
+  posts.forEach {
     item {
-      Text("Post")
+      PostItemView(modifier = modifier, postItem = it, onItemClick = { /* TODO */ })
     }
   }
 }

@@ -23,6 +23,7 @@ import com.myfeature.mobile.core.theme.BlueGreen
 import com.myfeature.mobile.core.theme.ControlColor
 import com.myfeature.mobile.core.theme.White
 import com.myfeature.mobile.core.utils.Functions
+import com.myfeature.mobile.ui.common.Logo
 
 private val paddingButtons = 4.dp
 
