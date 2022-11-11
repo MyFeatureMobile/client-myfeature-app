@@ -19,4 +19,7 @@ val DividerGray = Color(parseColor("#FF545454"))
 val TextFieldBackground = Color(parseColor("#EAEAEA"))
 val TextFieldHint = Color(parseColor("#535353"))
 val TextColor = Color.Black
+val TextMinorColor = Color(parseColor("#545454"))
 val TextOnButtonColor = Color.White
+
+val LightBlueberry = Color(parseColor("#F4F8FB"))

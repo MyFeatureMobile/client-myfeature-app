@@ -1,11 +1,11 @@
-package com.myfeature.mobile.ui.navigation
+package com.myfeature.mobile.ui.beginner.navigation
 
-object MainDestinations {
+internal object BeginnerDestinations {
   const val REGISTER_PART_ROUTE = "register"
   const val LOGIN_ROUTE = "login"
   const val BEGINNER = "beginner"
   const val WELCOME_ROUTE = "welcome"
+  const val LOADING = "loading"
   const val FIND_ACCOUNT_ROUTE = "find_account"
-
-  const val MAIN_ROUTE = "main"
+  const val FINISH_REGISTER_ROUTE = "finish_register"
 }

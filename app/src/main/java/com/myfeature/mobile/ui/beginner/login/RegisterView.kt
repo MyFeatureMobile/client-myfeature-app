@@ -32,7 +32,7 @@ import com.myfeature.mobile.core.theme.TextFieldHint
 import com.myfeature.mobile.core.theme.White
 import com.myfeature.mobile.core.theme.featTextFieldColors
 import com.myfeature.mobile.core.utils.modifierMaxWidth
-import com.myfeature.mobile.ui.Logo
+import com.myfeature.mobile.ui.beginner.Logo
 import com.myfeature.mobile.ui.common.ScrollableTextField
 
 @Composable

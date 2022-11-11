@@ -1,6 +1,7 @@
 <resources>
-  <string name="app_name">client-myfeature-app</string>
+  <string name="app_name">MyFeature</string>
   <string name="timeline_bottom_title">Timeline</string>
+  <string name="favourites_bottom_title">Favourites</string>
   <string name="home_profile">Profile</string>
 
   <string name="login_email_username_hint">Email address or username</string>
@@ -13,4 +14,10 @@
   <string name="login_incorrect_password_title">Incorrect password</string>
   <string name="login_incorrect_password_body">The password that you\'ve entered is incorrect. Please try again</string>
   <string name="login_incorrect_password_dismiss">OK</string>
+
+  <string name="login_welcome_to_my_feature_title">Welcome to MyFeature,\n%1$s</string>
+
+  <string name="profile_category_posts">Posts</string>
+  <string name="profile_category_followers">Followers</string>
+  <string name="profile_category_following">Following</string>
 </resources>

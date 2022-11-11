@@ -1,4 +1,4 @@
-package com.myfeature.mobile.ui
+package com.myfeature.mobile.ui.home
 
 import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
@@ -9,14 +9,13 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.myfeature.mobile.ui.bottom.HomeSections
 
 @Stable
 class AppState(
-    val scaffoldState: ScaffoldState,
-    val navController: NavHostController
+  val scaffoldState: ScaffoldState,
+  val navController: NavHostController
 ) {
-  val bottomBarTabs = HomeSections.values()
+  val bottomBarTabs = HomeScreens.values()
   private val bottomBarRoutes = bottomBarTabs.map { it.route }
 
   val shouldShowBottomBar: Boolean
@@ -44,7 +43,7 @@ class AppState(
 }
 
 private fun NavBackStackEntry.lifecycleIsResumed() =
-    this.lifecycle.currentState == Lifecycle.State.RESUMED
+  this.lifecycle.currentState == Lifecycle.State.RESUMED
 
 private val NavGraph.startDestination: NavDestination?
   get() = findNode(startDestinationId)
