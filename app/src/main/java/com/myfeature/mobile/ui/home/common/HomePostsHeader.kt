@@ -27,6 +27,7 @@ import com.myfeature.mobile.core.utils.Functions
 fun HomePostsHeader(
   modifier: Modifier = Modifier,
   label: String? = null,
+  showAddPostButton: Boolean = true,
   onAddPostClick: () -> Unit = Functions::empty
 ) {
   ConstraintLayout(
@@ -61,19 +62,21 @@ fun HomePostsHeader(
           .padding(bottom = 16.dp)
       )
     }
-    Icon(imageVector = Outlined.Add,
-      contentDescription = "Add new post",
-      modifier = Modifier
-        .constrainAs(button) {
-          start.linkTo(parent.start)
-          top.linkTo(parent.top)
-        }
-        .padding(top = 16.dp, start = 16.dp)
-        .clickable(
-          interactionSource = remember { MutableInteractionSource() },
-          indication = rememberRipple(bounded = false, radius = 20.dp),
-          onClick = { onAddPostClick.invoke() }
-        )
-    )
+    if (showAddPostButton) {
+      Icon(imageVector = Outlined.Add,
+        contentDescription = "Add new post",
+        modifier = Modifier
+          .constrainAs(button) {
+            start.linkTo(parent.start)
+            top.linkTo(parent.top)
+          }
+          .padding(top = 16.dp, start = 16.dp)
+          .clickable(
+            interactionSource = remember { MutableInteractionSource() },
+            indication = rememberRipple(bounded = false, radius = 20.dp),
+            onClick = { onAddPostClick.invoke() }
+          )
+      )
+    }
   }
 }

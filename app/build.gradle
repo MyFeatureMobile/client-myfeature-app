@@ -72,4 +72,10 @@ dependencies {
   implementation("androidx.navigation:navigation-compose:2.5.2")
 
   implementation("io.coil-kt:coil-compose:2.0.0-rc01")
+
+  def pager_version = "0.25.1"
+  implementation "com.google.accompanist:accompanist-pager:$pager_version"
+
+  // If using indicators, also depend on
+  implementation "com.google.accompanist:accompanist-pager-indicators:$pager_version"
 }

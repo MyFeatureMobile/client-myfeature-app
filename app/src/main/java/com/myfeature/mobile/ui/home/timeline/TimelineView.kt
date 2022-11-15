@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.myfeature.mobile.core.utils.Functions
 import com.myfeature.mobile.data.TestData
 import com.myfeature.mobile.ui.home.common.HomePostsHeader
 import com.myfeature.mobile.ui.home.common.PostItemView
@@ -14,6 +15,7 @@ import com.myfeature.mobile.ui.home.common.PostItemView
 fun TimelineView(
   modifier: Modifier = Modifier,
   label: String = "For you ❤️",
+  onPostClick: (String) -> Unit = Functions::empty,
 ) {
   Box(
     modifier = modifier
@@ -32,7 +34,7 @@ fun TimelineView(
         item {
           PostItemView(
             postItem = post,
-            onItemClick = { /*TODO*/ },
+            onItemClick = { onPostClick.invoke(post.id) },
             modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp)
           )
         }

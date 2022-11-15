@@ -9,7 +9,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.myfeature.mobile.R
 import com.myfeature.mobile.ui.home.MainDestinations.MAIN_ROUTE
 
-internal val DEFAULT_SCREEN = HomeScreens.PROFILE
+internal val DEFAULT_SCREEN = HomeScreens.FOLLOWING
 
 enum class HomeScreens(
   @StringRes val title: Int,

@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -18,7 +17,6 @@ import androidx.compose.ui.unit.dp
 import com.myfeature.mobile.data.TestData
 import com.myfeature.mobile.ui.home.common.PostItemView
 import com.myfeature.mobile.ui.home.profile.header.ProfileHeaderView
-import com.myfeature.mobile.ui.home.profile.model.Category
 import com.myfeature.mobile.ui.home.profile.model.Category.FOLLOWERS
 import com.myfeature.mobile.ui.home.profile.model.Category.FOLLOWING
 import com.myfeature.mobile.ui.home.profile.model.Category.POSTS
@@ -31,9 +29,6 @@ private val DEFAULT_PRESELECTED_CATEGORY = POSTS
 @Composable
 fun ProfileView(modifier: Modifier = Modifier) {
   val selectedCategory = remember { mutableStateOf(DEFAULT_PRESELECTED_CATEGORY) }
-  fun onSelectedCategoryChanged(category: Category) {
-    selectedCategory.value = category
-  }
 
   LazyColumn(modifier = modifier) {
     item {

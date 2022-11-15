@@ -9,6 +9,8 @@ import androidx.navigation.compose.composable
 import com.myfeature.mobile.ui.home.HomeScreens.FOLLOWING
 import com.myfeature.mobile.ui.home.HomeScreens.PROFILE
 import com.myfeature.mobile.ui.home.HomeScreens.TIMELINE
+import com.myfeature.mobile.ui.home.MainDestinations.MAIN_POST
+import com.myfeature.mobile.ui.home.post.PostView
 import com.myfeature.mobile.ui.home.profile.ProfileView
 import com.myfeature.mobile.ui.home.timeline.TimelineView
 
@@ -20,13 +22,20 @@ fun HomeNavGraph(navController: NavHostController, modifier: Modifier = Modifier
     startDestination = DEFAULT_SCREEN.route
   ) {
     composable(route = FOLLOWING.route) {
-      TimelineView(modifier, "Following")
+      TimelineView(
+        modifier = modifier,
+        label = "Following",
+        onPostClick = { postId -> navController.navigate(MAIN_POST) /* TODO: Send param */ }
+      )
     }
     composable(route = TIMELINE.route) {
       TimelineView(modifier)
     }
     composable(route = PROFILE.route) {
       ProfileView(modifier)
+    }
+    composable(route = MAIN_POST) {
+      PostView(modifier)
     }
     detailsNavGraph(navController = navController)
   }
