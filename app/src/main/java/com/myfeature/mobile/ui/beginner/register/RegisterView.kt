@@ -1,4 +1,4 @@
-package com.myfeature.mobile.ui.beginner.login
+package com.myfeature.mobile.ui.beginner.register
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
