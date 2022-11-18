@@ -6,7 +6,9 @@ import com.google.gson.Gson
 import com.myfeature.mobile.core.coroutines.AppDispatchers
 import com.myfeature.mobile.data.LoginDataLocalStorage
 import com.myfeature.mobile.data.LoginRepository
+import com.myfeature.mobile.data.RegisterRepository
 import com.myfeature.mobile.domain.LoginInteractor
+import com.myfeature.mobile.domain.RegisterInteractor
 
 @SuppressLint("StaticFieldLeak")
 object GraphDI {
@@ -26,6 +28,14 @@ object GraphDI {
 
   val loginInteractor: LoginInteractor by lazy {
     LoginInteractor()
+  }
+
+  val registerRepository: RegisterRepository by lazy {
+    RegisterRepository()
+  }
+
+  val registerInteractor: RegisterInteractor by lazy {
+    RegisterInteractor()
   }
 
   // Coroutines

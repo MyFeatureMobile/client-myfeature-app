@@ -7,16 +7,12 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.myfeature.mobile.core.theme.BlueGreen
 import com.myfeature.mobile.core.theme.White
@@ -54,7 +50,6 @@ fun LoadingView(
           onLoggedIn.invoke()
         }
       }
-
     }
   }
 }

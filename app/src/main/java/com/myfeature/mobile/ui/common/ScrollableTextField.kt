@@ -27,7 +27,9 @@ fun ScrollableTextField(
   colors: TextFieldColors = featTextFieldColors(),
   keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
   keyboardActions: KeyboardActions = KeyboardActions(),
-  visualTransformation: VisualTransformation = VisualTransformation.None
+  visualTransformation: VisualTransformation = VisualTransformation.None,
+  enabled: Boolean = true,
+  isError: Boolean = false
 ) {
   val bringIntoViewRequester = remember { BringIntoViewRequester() }
   val coroutineScope = rememberCoroutineScope()
@@ -48,6 +50,8 @@ fun ScrollableTextField(
       },
     keyboardActions = keyboardActions,
     keyboardOptions = keyboardOptions,
-    visualTransformation = visualTransformation
+    visualTransformation = visualTransformation,
+    enabled = enabled,
+    isError = isError,
   )
 }

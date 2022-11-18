@@ -12,7 +12,7 @@ import com.myfeature.mobile.domain.LoginData
 import com.myfeature.mobile.ui.beginner.BeginnerState
 import com.myfeature.mobile.ui.beginner.BeginnerView
 import com.myfeature.mobile.ui.beginner.loading.LoadingView
-import com.myfeature.mobile.ui.beginner.login.FinishRegisterView
+import com.myfeature.mobile.ui.beginner.register.FinishRegisterView
 import com.myfeature.mobile.ui.beginner.login.LoginView
 import com.myfeature.mobile.ui.beginner.register.RegisterView
 import com.myfeature.mobile.ui.beginner.navigation.BeginnerDestinations.FINISH_REGISTER_ROUTE
@@ -44,11 +44,12 @@ fun BeginApp(onAuthorizedAlready: () -> Unit, onLogin: (LoginData) -> Unit) {
           onRestoreAccess = {})
       }
       composable(REGISTER_PART_ROUTE) {
-        RegisterView(onInputFinished = { userName, password ->
-          // TODO: ANDROID-8
-          val data = LoginData(userName, password)
-          appState.navController.navigate(FINISH_REGISTER_ROUTE, "data" to data)
-        })
+        RegisterView(
+          onAccountCreated = { userName, password ->
+            // TODO: ANDROID-8
+            val data = LoginData(userName, password)
+            appState.navController.navigate(FINISH_REGISTER_ROUTE, "data" to data)
+          })
       }
       composable(
         route = FINISH_REGISTER_ROUTE

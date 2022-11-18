@@ -42,7 +42,6 @@ class LoadingViewModel : ViewModel() {
           _needToAuthorizeState.value = Need
         } else {
           AuthStorage.saveAuthData(response)
-          loginInteractor.saveData(data.username, data.password)
           _needToAuthorizeState.value = Authorized
         }
       } catch (e: Exception) {

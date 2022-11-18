@@ -8,5 +8,5 @@ class AppDispatchers {
 
   fun main() = Dispatchers.Main
 
-  fun default() = Dispatchers.Default
+  fun computation() = Dispatchers.Default
 }

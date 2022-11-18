@@ -24,16 +24,17 @@ class LoginDataLocalStorage(
     EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
   )
 
-
   suspend fun getDataFromStorage(): StoredLoginData? {
     return withContext(appDispatchers.io()) {
-      gson.fromJson(sharedPreferences.getString(LOGIN_DATA, "") ?: "", StoredLoginData::class.java)
+      val data = sharedPreferences.getString(LOGIN_DATA, "") ?: ""
+      gson.fromJson(data, StoredLoginData::class.java)
     }
   }
 
   suspend fun saveData(storedLoginData: StoredLoginData) {
     withContext(appDispatchers.io()) {
-      sharedPreferences.edit().putString(LOGIN_DATA, gson.toJson(storedLoginData))
+      val jsonString = gson.toJson(storedLoginData)
+      sharedPreferences.edit().putString(LOGIN_DATA, jsonString).apply()
     }
   }
 

@@ -4,13 +4,17 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -25,29 +29,43 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.myfeature.mobile.R.dimen
 import com.myfeature.mobile.core.theme.ControlColor
 import com.myfeature.mobile.core.theme.ControlDisabledColor
 import com.myfeature.mobile.core.theme.TextFieldHint
 import com.myfeature.mobile.core.theme.White
 import com.myfeature.mobile.core.theme.featTextFieldColors
+import com.myfeature.mobile.core.utils.Functions
 import com.myfeature.mobile.core.utils.modifierMaxWidth
 import com.myfeature.mobile.ui.common.Logo
 import com.myfeature.mobile.ui.common.ScrollableTextField
 
+// TODO: ANDROID-4
 @Composable
 fun RegisterView(
   modifier: Modifier = Modifier,
-  onInputFinished: (String, String) -> Unit
+  onAccountCreated: (String, String) -> Unit
 ) {
-  val userName = remember { mutableStateOf("") }
-  val requestUserName = remember { mutableStateOf(true) }
+  val registerViewModel: RegisterViewModel = viewModel()
+  val state = registerViewModel.registerState.collectAsState(
+    initial = RegisterState(
+      userName = "",
+      password = "",
+      requestUserName = true,
+      loading = false
+    )
+  )
+  val requestUserName = state.value.requestUserName
+  val errorOccurred = (state.value.error != null)
+  val loading = state.value.loading
+
   ConstraintLayout(
     modifier = modifier
       .fillMaxSize()
       .padding(32.dp)
   ) {
-    val (inputForm, logo) = createRefs()
+    val (inputForm, logo, progressBar) = createRefs()
     val formModifier = Modifier
       .constrainAs(inputForm) {
         top.linkTo(logo.bottom)
@@ -55,7 +73,7 @@ fun RegisterView(
         end.linkTo(parent.end)
       }
       .padding(top = 16.dp)
-    if (requestUserName.value) {
+    if (requestUserName) {
       SingleForm(
         modifier = formModifier,
         title = "Choose username",
@@ -63,9 +81,11 @@ fun RegisterView(
         hint = "Username",
         buttonText = "Next",
         onDone = {
-          userName.value = it
-          requestUserName.value = false
-        }
+          registerViewModel.setUserName(it)
+        },
+        loading = loading,
+        isError = errorOccurred,
+        errorMessage = state.value.error?.message ?: ""
       )
     } else {
       SingleForm(
@@ -75,9 +95,13 @@ fun RegisterView(
         hint = "Password",
         buttonText = "Next",
         onDone = { password ->
-          onInputFinished.invoke(userName.value, password)
+          registerViewModel.setPassword(password)
+          registerViewModel.createAccount(onAccountCreated)
         },
-        transformation = PasswordVisualTransformation()
+        transformation = PasswordVisualTransformation(),
+        loading = loading,
+        isError = errorOccurred,
+        errorMessage = state.value.error?.message ?: ""
       )
     }
     Logo(
@@ -103,6 +127,9 @@ fun SingleForm(
   keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
   buttonText: String,
   transformation: VisualTransformation = VisualTransformation.None,
+  loading: Boolean = false,
+  isError: Boolean = false,
+  errorMessage: String = "",
 ) {
   val focusRequester = remember { FocusRequester() }
   val fieldState = remember { mutableStateOf("") }
@@ -130,8 +157,23 @@ fun SingleForm(
       visualTransformation = transformation,
       label = { Text(text = hint, color = TextFieldHint) },
       onValueChange = { fieldState.value = it },
-      colors = featTextFieldColors()
+      colors = featTextFieldColors(),
+      enabled = !loading,
+      isError = isError
     )
+    if (loading) {
+      CircularProgressIndicator(
+        modifier = Modifier.size(18.dp)
+      )
+    }
+    if (isError) {
+      Text(
+        text = errorMessage,
+        color = MaterialTheme.colors.error,
+        fontSize = 14.sp,
+        modifier = Modifier.padding(start = 16.dp),
+      )
+    }
     Button(
       modifier = modifierMaxWidth
         .padding(vertical = 12.dp)
@@ -145,7 +187,7 @@ fun SingleForm(
         disabledBackgroundColor = ControlDisabledColor,
         disabledContentColor = White
       ),
-      enabled = fieldState.value.isNotBlank()
+      enabled = fieldState.value.isNotBlank() && !loading
     ) {
       Text(
         text = buttonText,
@@ -163,5 +205,5 @@ fun SingleForm(
 @Preview
 @Composable
 fun PreviewRegisterView() {
-  RegisterView(onInputFinished = { _, _ -> })
+  RegisterView(onAccountCreated = Functions::empty)
 }
