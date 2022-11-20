@@ -38,6 +38,12 @@ class LoginDataLocalStorage(
     }
   }
 
+  suspend fun clear() {
+    withContext(appDispatchers.io()) {
+      sharedPreferences.edit().putString(LOGIN_DATA, "").apply()
+    }
+  }
+
   companion object {
 
     private const val LOGIN_SHARED_STORAGE_NAME = "LoginSharedStorageName"

@@ -18,10 +18,12 @@ import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import com.myfeature.mobile.R
 import com.myfeature.mobile.core.theme.barBackground
 import com.myfeature.mobile.core.utils.Functions
 
@@ -72,7 +74,7 @@ fun ProfileHeaderView(modifier: Modifier = Modifier, onPhotoChangeClick: () -> U
       ProfileNumberItem(paramName = "Following", number = 1043)
     }
     Icon(
-      imageVector = Icons.Outlined.Settings,
+      painter = painterResource(id = R.drawable.ic_logout),
       modifier = Modifier
         .constrainAs(settings) {
           top.linkTo(parent.top)
