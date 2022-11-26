@@ -12,8 +12,6 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -26,9 +24,15 @@ import androidx.constraintlayout.compose.Dimension
 import com.myfeature.mobile.R
 import com.myfeature.mobile.core.theme.barBackground
 import com.myfeature.mobile.core.utils.Functions
+import com.myfeature.mobile.ui.home.profile.ProfileState
 
 @Composable
-fun ProfileHeaderView(modifier: Modifier = Modifier, onPhotoChangeClick: () -> Unit = Functions::empty) {
+fun ProfileHeaderView(
+  modifier: Modifier = Modifier,
+  profileState: ProfileState = remember { ProfileState.EMPTY() },
+  onPhotoChangeClick: () -> Unit = Functions::empty,
+  onLogOut: () -> Unit = Functions::empty
+) {
   ConstraintLayout(
     modifier
       .background(MaterialTheme.colors.barBackground)
@@ -45,6 +49,7 @@ fun ProfileHeaderView(modifier: Modifier = Modifier, onPhotoChangeClick: () -> U
           top.linkTo(parent.top)
         }
         .wrapContentSize(),
+      photoUrl = profileState.avatarUrl,
       onChangePhoto = onPhotoChangeClick
     )
     ProfileUserNameView(
@@ -55,7 +60,7 @@ fun ProfileHeaderView(modifier: Modifier = Modifier, onPhotoChangeClick: () -> U
         }
         .padding(start = 16.dp)
         .wrapContentSize(),
-      name = "Ivan Kostylev",
+      name = profileState.userName,
       onEditName = { /*TODO*/ })
     Row(
       modifier = Modifier
@@ -69,9 +74,9 @@ fun ProfileHeaderView(modifier: Modifier = Modifier, onPhotoChangeClick: () -> U
         .padding(start = 16.dp, end = 16.dp),
       horizontalArrangement = Arrangement.SpaceBetween
     ) {
-      ProfileNumberItem(paramName = "Posts", number = 33)
-      ProfileNumberItem(paramName = "Followers", number = 743)
-      ProfileNumberItem(paramName = "Following", number = 1043)
+      ProfileNumberItem(paramName = "Posts", number = profileState.postsCount)
+      ProfileNumberItem(paramName = "Followers", number = profileState.followersCount)
+      ProfileNumberItem(paramName = "Following", number = profileState.followingCount)
     }
     Icon(
       painter = painterResource(id = R.drawable.ic_logout),
@@ -84,7 +89,7 @@ fun ProfileHeaderView(modifier: Modifier = Modifier, onPhotoChangeClick: () -> U
         .clickable(
           interactionSource = remember { MutableInteractionSource() },
           indication = rememberRipple(bounded = false, radius = 12.dp),
-          onClick = { /*TODO*/ }
+          onClick = { onLogOut.invoke() }
         ),
       contentDescription = "Settings"
     )

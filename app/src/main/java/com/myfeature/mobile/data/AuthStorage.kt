@@ -12,4 +12,9 @@ object AuthStorage {
     token = data.token
     userId = data.userId
   }
+
+  fun clear() {
+    token = ""
+    userId = ""
+  }
 }

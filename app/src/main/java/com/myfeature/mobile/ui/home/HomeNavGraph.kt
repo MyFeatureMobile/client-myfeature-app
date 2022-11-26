@@ -2,7 +2,6 @@ package com.myfeature.mobile.ui.home
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -15,7 +14,7 @@ import com.myfeature.mobile.ui.home.profile.ProfileView
 import com.myfeature.mobile.ui.home.timeline.TimelineView
 
 @Composable
-fun HomeNavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
+fun HomeNavGraph(navController: NavHostController, modifier: Modifier = Modifier, onLogOut: () -> Unit) {
   NavHost(
     navController = navController,
     route = MainDestinations.MAIN_ROUTE,
@@ -32,34 +31,12 @@ fun HomeNavGraph(navController: NavHostController, modifier: Modifier = Modifier
       TimelineView(modifier)
     }
     composable(route = PROFILE.route) {
-      ProfileView(modifier)
+      ProfileView(modifier, onLogOut = onLogOut)
     }
     composable(route = MAIN_POST) {
       PostView(modifier)
     }
-    detailsNavGraph(navController = navController)
   }
-}
-
-fun NavGraphBuilder.detailsNavGraph(navController: NavHostController) {
-//  navigation(
-//    route = Graph.DETAILS,
-//    startDestination = DetailsScreen.Information.route
-//  ) {
-//    composable(route = DetailsScreen.Information.route) {
-//      ScreenContent(name = DetailsScreen.Information.route) {
-//        navController.navigate(DetailsScreen.Overview.route)
-//      }
-//    }
-//    composable(route = DetailsScreen.Overview.route) {
-//      ScreenContent(name = DetailsScreen.Overview.route) {
-//        navController.popBackStack(
-//          route = DetailsScreen.Information.route,
-//          inclusive = false
-//        )
-//      }
-//    }
-//  }
 }
 
 sealed class DetailsScreen(val route: String) {

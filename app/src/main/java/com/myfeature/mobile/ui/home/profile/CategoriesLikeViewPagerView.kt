@@ -11,9 +11,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,18 +24,17 @@ import com.myfeature.mobile.ui.home.profile.model.Category.POSTS
 
 @Composable
 fun CategoriesLikeViewPagerView(
-  selected: MutableState<Category>,
+  selected: Category,
+  onChangeSelection: (Category) -> Unit = Functions::empty
 ) {
   val modifier = Modifier.fillMaxWidth()
   Column(modifier = modifier.wrapContentHeight()) {
     Row(modifier = modifier.wrapContentHeight(), horizontalArrangement = Arrangement.SpaceAround) {
       Category.values().forEach {
         TextButton(
-          onClick = {
-            selected.value = it
-          }
+          onClick = { onChangeSelection.invoke(it) }
         ) {
-          val textColor = if (selected.value == it) {
+          val textColor = if (selected == it) {
             MaterialTheme.colors.controlMain
           } else {
             MaterialTheme.colors.textMain
@@ -54,5 +50,5 @@ fun CategoriesLikeViewPagerView(
 @Preview
 @Composable
 fun CategoriesView() {
-  CategoriesLikeViewPagerView(selected = remember { mutableStateOf(POSTS) })
+  CategoriesLikeViewPagerView(selected = POSTS)
 }

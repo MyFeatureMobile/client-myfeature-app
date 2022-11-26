@@ -1,5 +1,6 @@
 package com.myfeature.mobile.data
 
+import com.myfeature.mobile.data.model.UserProfile
 import com.myfeature.mobile.ui.home.post.model.PostModel
 import com.myfeature.mobile.ui.home.post.model.UserOnPost
 import com.myfeature.mobile.ui.home.profile.model.PostItem
@@ -61,5 +62,14 @@ object TestData {
     description = "Hi, everyone, this is my first post on MyFeature\n" +
         "Follow me on TikTok :)",
     codeLink = "https://github.com/MyFeatureMobile/client-myfeature-app/blob/master/app/src/main/java/com/myfeature/mobile/ui/home/HomeScreens.kt",
+  )
+
+  val userProfile = UserProfile(
+    userId = "12345678",
+    avatarUrl = "https://wallbox.ru/wallpapers/main/201151/koshki-f60c1e13bc32.jpg",
+    userName = "Simon Kulyomin",
+    postsCount = 63,
+    followersCount = 734,
+    followingCount = 5223
   )
 }

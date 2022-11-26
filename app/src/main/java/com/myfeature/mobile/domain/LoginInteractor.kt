@@ -1,5 +1,6 @@
 package com.myfeature.mobile.domain
 
+import com.myfeature.mobile.data.AuthStorage
 import com.myfeature.mobile.data.model.AuthParams
 import com.myfeature.mobile.data.model.AuthResponse
 import com.myfeature.mobile.data.model.StoredLoginData
@@ -21,5 +22,10 @@ class LoginInteractor {
 
   suspend fun saveData(userName: String, password: String) {
     return loginLocalStorage.saveData(StoredLoginData(userName, password))
+  }
+
+  suspend fun logOut() {
+    AuthStorage.clear()
+    loginLocalStorage.clear()
   }
 }
