@@ -12,14 +12,14 @@ import com.myfeature.mobile.domain.LoginData
 import com.myfeature.mobile.ui.beginner.BeginnerState
 import com.myfeature.mobile.ui.beginner.BeginnerView
 import com.myfeature.mobile.ui.beginner.loading.LoadingView
-import com.myfeature.mobile.ui.beginner.register.FinishRegisterView
 import com.myfeature.mobile.ui.beginner.login.LoginView
-import com.myfeature.mobile.ui.beginner.register.RegisterView
 import com.myfeature.mobile.ui.beginner.navigation.BeginnerDestinations.FINISH_REGISTER_ROUTE
 import com.myfeature.mobile.ui.beginner.navigation.BeginnerDestinations.LOADING
 import com.myfeature.mobile.ui.beginner.navigation.BeginnerDestinations.LOGIN_ROUTE
 import com.myfeature.mobile.ui.beginner.navigation.BeginnerDestinations.REGISTER_PART_ROUTE
 import com.myfeature.mobile.ui.beginner.navigation.BeginnerDestinations.WELCOME_ROUTE
+import com.myfeature.mobile.ui.beginner.register.FinishRegisterView
+import com.myfeature.mobile.ui.beginner.register.RegisterView
 import com.myfeature.mobile.ui.common.navigate
 import com.myfeature.mobile.ui.common.requiredArg
 
@@ -39,9 +39,11 @@ fun BeginApp(onAuthorizedAlready: () -> Unit, onLogin: (LoginData) -> Unit) {
           onSignUp = { appState.navController.navigate(REGISTER_PART_ROUTE) })
       }
       composable(LOGIN_ROUTE) {
-        LoginView(onLogInClick = {},
+        LoginView(
+          onLoggedIn = { onLogin.invoke(it) },
           onGoSignIn = { appState.navController.navigate(REGISTER_PART_ROUTE) },
-          onRestoreAccess = {})
+          onRestoreAccess = {}
+        )
       }
       composable(REGISTER_PART_ROUTE) {
         RegisterView(

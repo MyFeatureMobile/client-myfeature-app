@@ -26,6 +26,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.myfeature.mobile.R
 import com.myfeature.mobile.core.theme.ControlColor
 import com.myfeature.mobile.core.theme.TextColor
@@ -35,19 +36,21 @@ import com.myfeature.mobile.core.theme.featTextFieldColors
 import com.myfeature.mobile.core.utils.annotatedStringResource
 import com.myfeature.mobile.core.utils.fontDimensionResource
 import com.myfeature.mobile.core.utils.modifierMaxWidth
+import com.myfeature.mobile.domain.LoginData
 import com.myfeature.mobile.ui.common.Logo
 import com.myfeature.mobile.ui.common.ScrollableTextField
 
 @Composable
 fun LoginView(
   modifier: Modifier = Modifier,
-  onLogInClick: () -> Unit,
+  onLoggedIn: (LoginData) -> Unit,
   onGoSignIn: () -> Unit,
   onRestoreAccess: () -> Unit,
 ) {
   val usernameState = remember { mutableStateOf("") }
   val passwordState = remember { mutableStateOf("") }
   val openDialog = remember { mutableStateOf(false) }
+  val viewModel: LoginViewModel = viewModel()
   val focusManager = LocalFocusManager.current
   ConstraintLayout(
     modifier = modifier
@@ -98,8 +101,12 @@ fun LoginView(
           .padding(vertical = 12.dp)
           .wrapContentHeight(),
         onClick = {
-          openDialog.value = true
-          onLogInClick.invoke()
+          viewModel.logIn(
+            usernameState.value,
+            passwordState.value,
+            onLogIn = { onLoggedIn.invoke(it) },
+            onError = { openDialog.value = true }
+          )
         },
         colors = ButtonDefaults.textButtonColors(
           backgroundColor = ControlColor,
