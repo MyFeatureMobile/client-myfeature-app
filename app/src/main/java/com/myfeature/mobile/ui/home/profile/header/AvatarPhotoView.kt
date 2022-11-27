@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.rememberAsyncImagePainter
@@ -23,14 +24,20 @@ import com.myfeature.mobile.core.theme.controlMain
 import com.myfeature.mobile.core.utils.Functions
 
 @Composable
-fun AvatarPhotoView(modifier: Modifier = Modifier, onChangePhoto: () -> Unit = Functions::empty, photoUrl: String) {
+fun AvatarPhotoView(
+  modifier: Modifier = Modifier,
+  onChangePhoto: () -> Unit = Functions::empty,
+  photoSize: Dp = 72.dp,
+  iconSize: Dp = 18.dp,
+  photoUrl: String,
+) {
   ConstraintLayout(modifier = modifier) {
     val (photo, button) = createRefs()
     Image(
       painter = rememberAsyncImagePainter(photoUrl),
       contentDescription = "Your photo",
       modifier = modifier
-        .size(72.dp)
+        .size(photoSize)
         .clip(CircleShape)
         .constrainAs(photo) {
           top.linkTo(parent.top)
@@ -46,7 +53,7 @@ fun AvatarPhotoView(modifier: Modifier = Modifier, onChangePhoto: () -> Unit = F
       modifier = Modifier
         .background(MaterialTheme.colors.controlMain, CircleShape)
         .border(width = 1.dp, color = MaterialTheme.colors.bgMain, shape = CircleShape)
-        .size(18.dp)
+        .size(iconSize)
         .constrainAs(button) {
           bottom.linkTo(photo.bottom, margin = 1.dp)
           linkTo(start = photo.start, end = photo.end, bias = 0.8F)

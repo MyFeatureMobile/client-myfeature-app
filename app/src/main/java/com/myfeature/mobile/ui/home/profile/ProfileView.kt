@@ -35,16 +35,20 @@ private const val PROFILE_KEY = "profile"
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ProfileView(modifier: Modifier = Modifier, onLogOut: () -> Unit = Functions::empty) {
+fun ProfileView(
+  modifier: Modifier = Modifier,
+  onLogOut: () -> Unit = Functions::empty,
+  onEditProfile: () -> Unit = Functions::empty
+) {
   val profileViewModel: ProfileViewModel = viewModel()
   val state = profileViewModel.profileState.collectAsState(initial = null)
   val content = profileViewModel.contentState.collectAsState(initial = Empty())
   val refreshing by profileViewModel.refreshing.collectAsState()
 
-  profileViewModel.loadData()
   SwipeRefresh(
     state = rememberSwipeRefreshState(isRefreshing = refreshing),
-    onRefresh = { profileViewModel.loadData() }) {
+    onRefresh = { profileViewModel.loadData() }
+  ) {
     LazyColumn(modifier = modifier.fillMaxSize()) {
       val stateValue = state.value
       if (stateValue != null) {
@@ -58,6 +62,7 @@ fun ProfileView(modifier: Modifier = Modifier, onLogOut: () -> Unit = Functions:
               .padding(bottom = 5.dp)
               .clip(shape = topBarShape),
             profileState = stateValue,
+            onEditProfile = onEditProfile,
             onPhotoChangeClick = { /* TODO */ },
             onLogOut = {
               profileViewModel.logOut()

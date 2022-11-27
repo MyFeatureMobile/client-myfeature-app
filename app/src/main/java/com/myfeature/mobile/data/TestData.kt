@@ -68,6 +68,8 @@ object TestData {
     userId = "12345678",
     avatarUrl = "https://wallbox.ru/wallpapers/main/201151/koshki-f60c1e13bc32.jpg",
     userName = "Simon Kulyomin",
+    description = "My features are the best in the world of Mobile Development!",
+    email = "simon@kulyomin.dev",
     postsCount = 63,
     followersCount = 734,
     followingCount = 5223

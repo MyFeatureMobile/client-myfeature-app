@@ -11,6 +11,7 @@ import com.myfeature.mobile.ui.home.HomeScreens.TIMELINE
 import com.myfeature.mobile.ui.home.MainDestinations.MAIN_POST
 import com.myfeature.mobile.ui.home.post.PostView
 import com.myfeature.mobile.ui.home.profile.ProfileView
+import com.myfeature.mobile.ui.home.profile.edit.ProfileEditView
 import com.myfeature.mobile.ui.home.timeline.TimelineView
 
 @Composable
@@ -31,7 +32,14 @@ fun HomeNavGraph(navController: NavHostController, modifier: Modifier = Modifier
       TimelineView(modifier)
     }
     composable(route = PROFILE.route) {
-      ProfileView(modifier, onLogOut = onLogOut)
+      ProfileView(modifier, onLogOut = onLogOut) { navController.navigate(PROFILE_EDIT) }
+    }
+    composable(route = PROFILE_EDIT) {
+      ProfileEditView(
+        modifier = modifier,
+        onUpdated = { navController.navigate(PROFILE.route) },
+        onCancel = { navController.navigate(PROFILE.route) }
+      )
     }
     composable(route = MAIN_POST) {
       PostView(modifier)

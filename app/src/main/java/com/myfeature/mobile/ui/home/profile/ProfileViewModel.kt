@@ -16,6 +16,7 @@ import com.myfeature.mobile.ui.home.profile.model.Category.FOLLOWERS
 import com.myfeature.mobile.ui.home.profile.model.Category.FOLLOWING
 import com.myfeature.mobile.ui.home.profile.model.Category.POSTS
 import com.myfeature.mobile.ui.home.profile.model.PostItem
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -48,6 +49,9 @@ class ProfileViewModel : ViewModel() {
   private val profileRepository: ProfileRepository = GraphDI.profileRepository
   private val userPostsInteractor: UserPostsInteractor = GraphDI.userPostsInteractor
 
+  private var loadProfileJob: Job? = null
+  private var waitingFirstDataJob: Job? = null
+
   init {
     viewModelScope.launch {
       selectedCategory
@@ -57,18 +61,36 @@ class ProfileViewModel : ViewModel() {
           _refreshing.value = false
         }
     }
+    loadData()
   }
 
   fun loadData() {
-    loadProfile()
+    loadProfileJob?.cancel()
+    loadProfileJob = null
+    loadProfileIfNotRequestedYet()
   }
 
-  private fun loadProfile() {
+  private fun loadProfileIfNotRequestedYet() {
+    if (loadProfileJob != null) {
+      return
+    }
     _refreshing.value = true
-    viewModelScope.launch {
+    loadProfileJob = viewModelScope.launch {
       val profile = profileRepository.getProfile(AuthStorage.userId)
-      _state.value = _state.value?.profileToState(profile) ?: ProfileState.EMPTY().profileToState(profile)
+      val profileState = _state.value?.profileToState(profile) ?: ProfileState.empty().profileToState(profile)
+      _state.value = profileState
       _refreshing.value = false
+    }
+  }
+
+  fun waitForData(onLoaded: (ProfileState) -> Unit) {
+    if (waitingFirstDataJob != null) {
+      return
+    }
+    waitingFirstDataJob = viewModelScope.launch {
+      _state.filterNotNull().collect {
+        onLoaded.invoke(it)
+      }
     }
   }
 
@@ -96,11 +118,28 @@ class ProfileViewModel : ViewModel() {
   fun selectCategory(category: Category) {
     selectedCategory.value = category
   }
+
+  fun updateUser(userName: String, email: String, description: String, onUpdated: () -> Unit) {
+    viewModelScope.launch {
+      _refreshing.value = true
+      profileRepository.updateProfile(userName, email, description)
+      _refreshing.value = false
+      onUpdated.invoke()
+    }
+  }
+
+  override fun onCleared() {
+    super.onCleared()
+    loadProfileJob?.cancel()
+    loadProfileJob = null
+  }
 }
 
 data class ProfileState(
   val userName: String,
   val avatarUrl: String,
+  val email: String,
+  val description: String,
   val postsCount: Int,
   val followersCount: Int,
   val followingCount: Int,
@@ -111,6 +150,8 @@ data class ProfileState(
     return ProfileState(
       userName = profile.userName,
       avatarUrl = profile.avatarUrl,
+      email = profile.email,
+      description = profile.description,
       postsCount = profile.postsCount.toInt(),
       followingCount = profile.followingCount.toInt(),
       followersCount = profile.followersCount.toInt(),
@@ -119,8 +160,8 @@ data class ProfileState(
   }
 
   companion object {
-    fun EMPTY() = ProfileState(
-      "", "", 0, 0, 0, POSTS
+    fun empty() = ProfileState(
+      "", "", "", "", 0, 0, 0, POSTS
     )
   }
 }

@@ -29,7 +29,8 @@ import com.myfeature.mobile.ui.home.profile.ProfileState
 @Composable
 fun ProfileHeaderView(
   modifier: Modifier = Modifier,
-  profileState: ProfileState = remember { ProfileState.EMPTY() },
+  profileState: ProfileState = remember { ProfileState.empty() },
+  onEditProfile: () -> Unit = Functions::empty,
   onPhotoChangeClick: () -> Unit = Functions::empty,
   onLogOut: () -> Unit = Functions::empty
 ) {
@@ -61,7 +62,8 @@ fun ProfileHeaderView(
         .padding(start = 16.dp)
         .wrapContentSize(),
       name = profileState.userName,
-      onEditName = { /*TODO*/ })
+      onEditName = onEditProfile
+    )
     Row(
       modifier = Modifier
         .constrainAs(info) {

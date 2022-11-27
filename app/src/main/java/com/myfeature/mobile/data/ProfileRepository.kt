@@ -9,6 +9,8 @@ import kotlinx.coroutines.withContext
 interface ProfileRepository {
 
   suspend fun getProfile(userId: String): UserProfile
+
+  suspend fun updateProfile(userName: String, email: String, description: String)
 }
 
 class ProfileRepositoryTest : ProfileRepository {
@@ -19,6 +21,12 @@ class ProfileRepositoryTest : ProfileRepository {
     return withContext(appDispatchers.io()) {
       delay(500)
       userProfile
+    }
+  }
+
+  override suspend fun updateProfile(userName: String, email: String, description: String) {
+    return withContext(appDispatchers.io()) {
+      delay(500)
     }
   }
 }

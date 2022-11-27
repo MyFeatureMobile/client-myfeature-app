@@ -4,6 +4,8 @@ class UserProfile(
   val userId: String,
   val userName: String,
   val avatarUrl: String,
+  val description: String,
+  val email: String,
   val postsCount: Long,
   val followersCount: Long,
   val followingCount: Long
