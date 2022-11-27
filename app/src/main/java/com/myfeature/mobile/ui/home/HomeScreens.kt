@@ -8,6 +8,7 @@ import androidx.compose.material.icons.outlined.Home
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.myfeature.mobile.R
 import com.myfeature.mobile.ui.home.HomeScreens.PROFILE
+import com.myfeature.mobile.ui.home.HomeScreens.TIMELINE
 import com.myfeature.mobile.ui.home.MainDestinations.MAIN_ROUTE
 
 internal val DEFAULT_SCREEN = HomeScreens.FOLLOWING
@@ -27,3 +28,4 @@ enum class HomeScreens(
 }
 
 val PROFILE_EDIT = "${PROFILE.route}/edit"
+val POST_ADD = "${TIMELINE.route}/add"

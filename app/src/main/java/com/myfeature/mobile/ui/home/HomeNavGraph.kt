@@ -10,6 +10,7 @@ import com.myfeature.mobile.ui.home.HomeScreens.PROFILE
 import com.myfeature.mobile.ui.home.HomeScreens.TIMELINE
 import com.myfeature.mobile.ui.home.MainDestinations.MAIN_POST
 import com.myfeature.mobile.ui.home.post.PostView
+import com.myfeature.mobile.ui.home.post.create.PostCreateView
 import com.myfeature.mobile.ui.home.profile.ProfileView
 import com.myfeature.mobile.ui.home.profile.edit.ProfileEditView
 import com.myfeature.mobile.ui.home.timeline.TimelineView
@@ -25,8 +26,12 @@ fun HomeNavGraph(navController: NavHostController, modifier: Modifier = Modifier
       TimelineView(
         modifier = modifier,
         label = "Following",
+        onAddPostClick = { navController.navigate(POST_ADD) },
         onPostClick = { postId -> navController.navigate(MAIN_POST) /* TODO: Send param */ }
       )
+    }
+    composable(route = POST_ADD) {
+      PostCreateView(modifier = modifier, onCompleted = { navController.navigate(PROFILE.route) })
     }
     composable(route = TIMELINE.route) {
       TimelineView(modifier)

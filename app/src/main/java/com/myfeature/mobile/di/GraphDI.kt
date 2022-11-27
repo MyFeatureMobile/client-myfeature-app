@@ -6,6 +6,8 @@ import com.google.gson.Gson
 import com.myfeature.mobile.core.coroutines.AppDispatchers
 import com.myfeature.mobile.data.LoginDataLocalStorage
 import com.myfeature.mobile.data.LoginRepository
+import com.myfeature.mobile.data.PostRepository
+import com.myfeature.mobile.data.PostRepositoryTest
 import com.myfeature.mobile.data.ProfileRepository
 import com.myfeature.mobile.data.ProfileRepositoryTest
 import com.myfeature.mobile.data.RegisterRepository
@@ -49,6 +51,10 @@ object GraphDI {
 
   val userPostsInteractor: UserPostsInteractor by lazy {
     UserPostsInteractorTest()
+  }
+
+  val postRepository: PostRepository by lazy {
+    PostRepositoryTest()
   }
 
   // Coroutines

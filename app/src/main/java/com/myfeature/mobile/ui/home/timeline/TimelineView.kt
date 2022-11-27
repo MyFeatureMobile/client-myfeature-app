@@ -14,7 +14,8 @@ import com.myfeature.mobile.ui.home.common.PostItemView
 @Composable
 fun TimelineView(
   modifier: Modifier = Modifier,
-  label: String = "For you ❤️",
+  label: String = "Timeline for you ❤️",
+  onAddPostClick: () -> Unit = Functions::empty,
   onPostClick: (String) -> Unit = Functions::empty,
 ) {
   Box(
@@ -27,7 +28,7 @@ fun TimelineView(
     ) {
       item {
         HomePostsHeader(label = label) {
-          /*TODO*/
+          onAddPostClick.invoke()
         }
       }
       TestData.posts.forEach { post ->
