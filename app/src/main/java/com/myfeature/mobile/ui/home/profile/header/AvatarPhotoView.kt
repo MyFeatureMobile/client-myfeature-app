@@ -23,11 +23,11 @@ import com.myfeature.mobile.core.theme.controlMain
 import com.myfeature.mobile.core.utils.Functions
 
 @Composable
-fun AvatarPhotoView(modifier: Modifier = Modifier, onChangePhoto: () -> Unit = Functions::empty) {
+fun AvatarPhotoView(modifier: Modifier = Modifier, onChangePhoto: () -> Unit = Functions::empty, photoUrl: String) {
   ConstraintLayout(modifier = modifier) {
     val (photo, button) = createRefs()
     Image(
-      painter = rememberAsyncImagePainter(PHOTO_EXAMPLE),
+      painter = rememberAsyncImagePainter(photoUrl),
       contentDescription = "Your photo",
       modifier = modifier
         .size(72.dp)
@@ -65,7 +65,7 @@ fun AvatarPhotoView(modifier: Modifier = Modifier, onChangePhoto: () -> Unit = F
 @Preview
 @Composable
 fun PreviewAvatarView() {
-  AvatarPhotoView()
+  AvatarPhotoView(photoUrl = PHOTO_EXAMPLE)
 }
 
 private const val PHOTO_EXAMPLE =

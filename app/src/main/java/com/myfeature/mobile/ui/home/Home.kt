@@ -54,7 +54,8 @@ fun Home(onLogOut: () -> Unit = Functions::empty) {
             top = it.calculateTopPadding(),
             bottom = it.calculateBottomPadding()
           )
-          .background(MaterialTheme.colors.bgMain)
+          .background(MaterialTheme.colors.bgMain),
+        onLogOut = onLogOut
       )
     }
   }
