@@ -1,6 +1,6 @@
 package com.myfeature.mobile.domain.repository
 
-import com.myfeature.mobile.data.model.UserProfile
+import com.myfeature.mobile.domain.model.UserProfile
 
 interface ProfileRepository {
 

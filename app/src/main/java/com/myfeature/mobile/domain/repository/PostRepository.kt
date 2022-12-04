@@ -1,8 +1,8 @@
 package com.myfeature.mobile.domain.repository
 
-import com.myfeature.mobile.data.model.FeaturePost
+import com.myfeature.mobile.ui.home.post.create.PostCreateState
 
 interface PostRepository {
 
-  suspend fun createPost(post: FeaturePost)
+  suspend fun createPost(post: PostCreateState)
 }

@@ -1,11 +1,14 @@
 package com.myfeature.mobile.data.mock
 
-import com.myfeature.mobile.data.model.UserProfile
+import com.myfeature.mobile.domain.model.UserProfile
 import com.myfeature.mobile.ui.home.post.model.PostModel
 import com.myfeature.mobile.ui.home.post.model.UserOnPost
 import com.myfeature.mobile.ui.home.profile.model.PostItem
 
 object TestData {
+
+  val avatarDefault =
+    "https://image.winudf.com/v2/image1/b3JnLm5ld3dhbGwuY2F0ZG9nX3NjcmVlbl80XzE1NzQyNTE2MDZfMDkw/screen-4.jpg?fakeurl=1&type=.jpg"
 
   val photos = listOf(
     "https://img.freepik.com/free-vector/smart-home-application_23-2148627263.jpg?w=2000&t=st=1668187263~exp=1668187863~hmac=fc502f8163dd1d2d50c6f9ad3ad88ced7ada33e7b5ca7ec646fdb538882a2a44",
@@ -65,7 +68,7 @@ object TestData {
   )
 
   val userProfile = UserProfile(
-    userId = "12345678",
+    userId = 12345678,
     avatarUrl = "https://wallbox.ru/wallpapers/main/201151/koshki-f60c1e13bc32.jpg",
     userName = "Simon Kulyomin",
     description = "My features are the best in the world of Mobile Development!",

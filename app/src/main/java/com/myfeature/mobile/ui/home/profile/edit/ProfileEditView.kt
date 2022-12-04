@@ -54,7 +54,7 @@ fun ProfileEditView(modifier: Modifier = Modifier, onUpdated: () -> Unit, onCanc
 
   viewModel.waitForData {
     fieldNameState.value = it.userName
-    fieldEmailState.value = it.email
+    fieldEmailState.value = it.email ?: ""
     fieldDescriptionState.value = it.description
   }
 

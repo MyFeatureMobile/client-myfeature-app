@@ -3,8 +3,9 @@ package com.myfeature.mobile.ui.home.profile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.myfeature.mobile.data.AuthStorage
-import com.myfeature.mobile.data.model.UserProfile
+import com.myfeature.mobile.data.mock.TestData.avatarDefault
 import com.myfeature.mobile.domain.LoginInteractor
+import com.myfeature.mobile.domain.model.UserProfile
 import com.myfeature.mobile.domain.repository.ProfileRepository
 import com.myfeature.mobile.domain.repository.UserPostsRepository
 import com.myfeature.mobile.ui.home.profile.ProfileContent.FollowersContent
@@ -24,11 +25,12 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import org.koin.java.KoinJavaComponent.get
 
 class ProfileViewModel(
-  private val loginInteractor: LoginInteractor,
-  private val profileRepository: ProfileRepository,
-  private val userPostsRepository: UserPostsRepository
+  private val loginInteractor: LoginInteractor = get(LoginInteractor::class.java),
+  private val profileRepository: ProfileRepository = get(ProfileRepository::class.java),
+  private val userPostsRepository: UserPostsRepository = get(UserPostsRepository::class.java)
 ) : ViewModel() {
 
   val profileState: Flow<ProfileState?>
@@ -137,7 +139,7 @@ class ProfileViewModel(
 data class ProfileState(
   val userName: String,
   val avatarUrl: String,
-  val email: String,
+  val email: String?,
   val description: String,
   val postsCount: Int,
   val followersCount: Int,
@@ -148,7 +150,7 @@ data class ProfileState(
   fun profileToState(profile: UserProfile): ProfileState {
     return ProfileState(
       userName = profile.userName,
-      avatarUrl = profile.avatarUrl,
+      avatarUrl = profile.avatarUrl ?: avatarDefault,
       email = profile.email,
       description = profile.description,
       postsCount = profile.postsCount.toInt(),

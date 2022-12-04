@@ -2,7 +2,6 @@ package com.myfeature.mobile.ui.home.post.create
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.myfeature.mobile.data.mapper.toFeaturePost
 import com.myfeature.mobile.domain.repository.PostRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -37,7 +36,7 @@ class PostCreateViewModel(
 
   fun createPost(onCompleted: () -> Unit) {
     viewModelScope.launch {
-      postRepository.createPost(_inputState.value.toFeaturePost())
+      postRepository.createPost(_inputState.value)
       onCompleted.invoke()
     }
   }

@@ -1,7 +1,7 @@
 package com.myfeature.mobile.data
 
 import com.myfeature.mobile.data.api.MyFeatureApi
-import com.myfeature.mobile.data.model.UserProfile
+import com.myfeature.mobile.domain.model.UserProfile
 import com.myfeature.mobile.domain.repository.ProfileRepository
 import org.koin.java.KoinJavaComponent.get
 
@@ -10,7 +10,7 @@ class ProfileRepositoryImpl(
 ) : ProfileRepository {
 
   override suspend fun getProfile(userId: String): UserProfile {
-    TODO("Not yet implemented")
+    return myFeatureApi.getProfile(userId)
   }
 
   override suspend fun updateProfile(userName: String, email: String, description: String) {

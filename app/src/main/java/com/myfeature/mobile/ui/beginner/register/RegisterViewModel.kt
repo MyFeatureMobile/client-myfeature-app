@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.myfeature.mobile.core.coroutines.AppDispatchers
 import com.myfeature.mobile.domain.LoginInteractor
 import com.myfeature.mobile.domain.RegisterInteractor
-import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -37,7 +36,7 @@ class RegisterViewModel(
         _registerState.value = _registerState.value.copy(loading = true)
         val username = _registerState.value.userName
         val password = _registerState.value.password
-        registerInteractor.registerAndSave(username, password)
+        registerInteractor.registerWithParams(username, password)
         loginInteractor.authorize(username, password)
         loginInteractor.saveData(username, password)
         withContext(appDispatchers.main()) {

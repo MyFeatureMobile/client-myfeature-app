@@ -2,7 +2,7 @@ package com.myfeature.mobile.data.mock
 
 import com.myfeature.mobile.core.coroutines.AppDispatchers
 import com.myfeature.mobile.data.mock.TestData.userProfile
-import com.myfeature.mobile.data.model.UserProfile
+import com.myfeature.mobile.domain.model.UserProfile
 import com.myfeature.mobile.domain.repository.ProfileRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext

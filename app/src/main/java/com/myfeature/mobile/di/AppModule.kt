@@ -2,10 +2,12 @@ package com.myfeature.mobile.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
 import com.myfeature.mobile.core.coroutines.AppDispatchers
 import com.myfeature.mobile.core.utils.API_URL
-import com.myfeature.mobile.core.utils.REAL_DATA_USED
+import com.myfeature.mobile.core.utils.DataSourceStrategy.MIX_DATA_USED
+import com.myfeature.mobile.core.utils.DataSourceStrategy.MOCKED_DATA_USED
+import com.myfeature.mobile.core.utils.DataSourceStrategy.REAL_DATA_USED
+import com.myfeature.mobile.core.utils.dataStrategy
 import com.myfeature.mobile.data.LoginDataLocalStorage
 import com.myfeature.mobile.data.LoginRepositoryImpl
 import com.myfeature.mobile.data.PostRepositoryImpl
@@ -30,6 +32,8 @@ import com.myfeature.mobile.ui.beginner.login.LoginViewModel
 import com.myfeature.mobile.ui.beginner.register.RegisterViewModel
 import com.myfeature.mobile.ui.home.post.create.PostCreateViewModel
 import com.myfeature.mobile.ui.home.profile.ProfileViewModel
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.factoryOf
@@ -60,12 +64,34 @@ object AppModule {
   }
 
   private fun Module.dataSources() {
-    if (REAL_DATA_USED) {
-      factory { createRetrofit(get()) }
-      factory { createMyFeatureApi(get()) }
-      realDataSources()
-    } else {
-      mockDataSource()
+    when (dataStrategy) {
+      REAL_DATA_USED -> {
+        factory { createRetrofit(get()) }
+        factory { createMyFeatureApi(get()) }
+        realDataSources()
+      }
+      MOCKED_DATA_USED -> {
+        mockDataSource()
+      }
+      MIX_DATA_USED -> {
+        factory { createRetrofit(get()) }
+        factory { createMyFeatureApi(get()) }
+
+        factoryOf<LoginRepository>(::LoginRepositoryTest)
+//        factoryOf<LoginRepository>(::LoginRepositoryImpl)
+
+        factoryOf<ProfileRepository>(::ProfileRepositoryTest)
+//        factoryOf<ProfileRepository>(::ProfileRepositoryImpl)
+
+        single<PostRepository> { PostRepositoryTest() }
+//        factoryOf<PostRepository>(::PostRepositoryImpl)
+
+        single<UserPostsRepository> { UserPostsRepositoryTest() }
+//        factoryOf<UserPostsRepository>(::UserPostsRepositoryImpl)
+
+//        single<RegisterRepository> { RegisterRepositoryTest() }
+        factoryOf<RegisterRepository>(::RegisterRepositoryImpl)
+      }
     }
   }
 
@@ -89,15 +115,17 @@ object AppModule {
     return retrofit.create(MyFeatureApi::class.java)
   }
 
-  internal fun createRetrofit(gson: Gson): Retrofit {
+  private fun createRetrofit(gson: Gson): Retrofit {
+    val client = OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor()).build()
     return Retrofit.Builder()
-      .baseUrl(API_URL)
-      .addCallAdapterFactory(CoroutineCallAdapterFactory())
       .addConverterFactory(GsonConverterFactory.create(gson))
+      .callFactory { client.newCall(it) }
+      .baseUrl(API_URL)
+      .client(client)
       .build()
   }
 
-  internal fun createGson(): Gson {
+  private fun createGson(): Gson {
     return GsonBuilder().create()
   }
 }
