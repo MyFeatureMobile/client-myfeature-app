@@ -29,7 +29,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.myfeature.mobile.R.dimen
 import com.myfeature.mobile.core.theme.ControlColor
 import com.myfeature.mobile.core.theme.ControlDisabledColor
@@ -40,6 +39,7 @@ import com.myfeature.mobile.core.utils.Functions
 import com.myfeature.mobile.core.utils.modifierMaxWidth
 import com.myfeature.mobile.ui.common.Logo
 import com.myfeature.mobile.ui.common.ScrollableTextField
+import org.koin.androidx.compose.koinViewModel
 
 // TODO: ANDROID-4
 @Composable
@@ -47,7 +47,7 @@ fun RegisterView(
   modifier: Modifier = Modifier,
   onAccountCreated: (String, String) -> Unit
 ) {
-  val registerViewModel: RegisterViewModel = viewModel()
+  val registerViewModel: RegisterViewModel = koinViewModel()
   val state = registerViewModel.registerState.collectAsState(
     initial = RegisterState(
       userName = "",

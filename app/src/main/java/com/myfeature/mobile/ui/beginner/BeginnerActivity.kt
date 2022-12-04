@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.myfeature.mobile.domain.LoginData
+import com.myfeature.mobile.domain.model.LoginData
 import com.myfeature.mobile.ui.beginner.navigation.BeginApp
 import com.myfeature.mobile.ui.home.HomeActivity
 

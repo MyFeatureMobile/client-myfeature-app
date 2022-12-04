@@ -2,21 +2,20 @@ package com.myfeature.mobile.ui.home.post.create
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.myfeature.mobile.data.PostRepository
 import com.myfeature.mobile.data.mapper.toFeaturePost
-import com.myfeature.mobile.di.GraphDI
+import com.myfeature.mobile.domain.repository.PostRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class PostCreateViewModel : ViewModel() {
+class PostCreateViewModel(
+  private val postRepository: PostRepository
+) : ViewModel() {
 
   val inputState: StateFlow<PostCreateState>
     get() = _inputState
 
   private val _inputState = MutableStateFlow(PostCreateState.EMPTY)
-
-  private val postRepository: PostRepository = GraphDI.postRepository
 
   fun updatePhotoUrl(photoUrl: String) {
     val current = _inputState.value

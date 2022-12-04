@@ -3,15 +3,12 @@ package com.myfeature.mobile.ui.beginner.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.myfeature.mobile.data.AuthStorage
-import com.myfeature.mobile.di.GraphDI
-import com.myfeature.mobile.domain.LoginData
+import com.myfeature.mobile.domain.model.LoginData
 import com.myfeature.mobile.domain.LoginInteractor
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 
-class LoginViewModel : ViewModel() {
-
-  private val loginInteractor: LoginInteractor by lazy { GraphDI.loginInteractor }
+class LoginViewModel(private val loginInteractor: LoginInteractor) : ViewModel() {
 
   fun logIn(userName: String, password: String, onLogIn: (LoginData) -> Unit, onError: () -> Unit) {
     val exceptionHandler = CoroutineExceptionHandler { _, _ -> onError.invoke() }

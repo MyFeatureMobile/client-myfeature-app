@@ -1,4 +1,4 @@
-package com.myfeature.mobile.data
+package com.myfeature.mobile.data.mock
 
 import com.myfeature.mobile.data.model.UserProfile
 import com.myfeature.mobile.ui.home.post.model.PostModel

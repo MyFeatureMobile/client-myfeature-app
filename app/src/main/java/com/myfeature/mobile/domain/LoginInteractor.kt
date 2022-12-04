@@ -1,16 +1,17 @@
 package com.myfeature.mobile.domain
 
 import com.myfeature.mobile.data.AuthStorage
+import com.myfeature.mobile.data.LoginDataLocalStorage
 import com.myfeature.mobile.data.model.AuthParams
 import com.myfeature.mobile.data.model.AuthResponse
 import com.myfeature.mobile.data.model.StoredLoginData
-import com.myfeature.mobile.di.GraphDI
+import com.myfeature.mobile.domain.repository.LoginRepository
+import org.koin.java.KoinJavaComponent.get
 
-class LoginInteractor {
-
-  private val loginLocalStorage = GraphDI.loginDataLocalStorage
-
-  private val loginRepository = GraphDI.loginRepository
+class LoginInteractor(
+  private val loginLocalStorage: LoginDataLocalStorage = get(LoginDataLocalStorage::class.java),
+  private val loginRepository: LoginRepository = get(LoginRepository::class.java)
+) {
 
   suspend fun savedAuthData(): StoredLoginData? {
     return loginLocalStorage.getDataFromStorage()

@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.myfeature.mobile.core.utils.Functions
-import com.myfeature.mobile.data.TestData
+import com.myfeature.mobile.data.mock.TestData
 import com.myfeature.mobile.ui.home.common.HomePostsHeader
 import com.myfeature.mobile.ui.home.common.PostItemView
 

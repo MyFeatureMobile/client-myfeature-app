@@ -1,12 +1,13 @@
-package com.myfeature.mobile.data
+package com.myfeature.mobile.data.mock
 
-import com.myfeature.mobile.data.model.AuthResponse
 import com.myfeature.mobile.data.model.AuthParams
+import com.myfeature.mobile.data.model.AuthResponse
+import com.myfeature.mobile.domain.repository.LoginRepository
 import timber.log.Timber
 
-class LoginRepository {
+class LoginRepositoryTest : LoginRepository {
 
-  suspend fun authorize(data: AuthParams): AuthResponse? {
+  override suspend fun authorize(data: AuthParams): AuthResponse? {
     return try {
       // TODO: Use real data with retrofit
       AuthResponse("1234567", "1234567")

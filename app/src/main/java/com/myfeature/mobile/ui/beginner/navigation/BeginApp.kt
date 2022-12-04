@@ -8,7 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.myfeature.mobile.core.theme.AppTheme
-import com.myfeature.mobile.domain.LoginData
+import com.myfeature.mobile.domain.model.LoginData
 import com.myfeature.mobile.ui.beginner.BeginnerState
 import com.myfeature.mobile.ui.beginner.BeginnerView
 import com.myfeature.mobile.ui.beginner.loading.LoadingView

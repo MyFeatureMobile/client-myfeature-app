@@ -36,7 +36,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.myfeature.mobile.core.theme.barBackground
 import com.myfeature.mobile.core.theme.controlMain
-import com.myfeature.mobile.data.TestData
+import com.myfeature.mobile.data.mock.TestData
 import com.myfeature.mobile.ui.home.post.model.PostModel
 
 @OptIn(ExperimentalPagerApi::class)

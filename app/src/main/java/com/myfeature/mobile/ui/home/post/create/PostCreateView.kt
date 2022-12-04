@@ -38,7 +38,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberAsyncImagePainter
 import com.myfeature.mobile.R.dimen
 import com.myfeature.mobile.core.theme.ControlColor
@@ -53,11 +52,12 @@ import com.myfeature.mobile.core.utils.fontDimensionResource
 import com.myfeature.mobile.core.utils.modifierMaxWidth
 import com.myfeature.mobile.ui.common.ScrollableTextField
 import com.myfeature.mobile.ui.home.common.HomePostsHeader
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun PostCreateView(modifier: Modifier = Modifier, onCompleted: () -> Unit = Functions::empty) {
-  val viewModel: PostCreateViewModel = viewModel()
+  val viewModel: PostCreateViewModel = koinViewModel()
   val inputState = viewModel.inputState.collectAsState()
   val addPhotoUrlDialogShowing = remember { mutableStateOf(false) }
   val focusRequester = remember { FocusRequester() }

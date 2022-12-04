@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.myfeature.mobile.data.AuthStorage
 import com.myfeature.mobile.data.model.StoredLoginData
-import com.myfeature.mobile.di.GraphDI
 import com.myfeature.mobile.domain.LoginInteractor
 import com.myfeature.mobile.ui.beginner.loading.AuthorizationNeed.Authorized
 import com.myfeature.mobile.ui.beginner.loading.AuthorizationNeed.Need
@@ -14,14 +13,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class LoadingViewModel : ViewModel() {
+class LoadingViewModel(private val loginInteractor: LoginInteractor) : ViewModel() {
 
   val needToAuthorizeState: StateFlow<AuthorizationNeed>
     get() = _needToAuthorizeState
 
   private val _needToAuthorizeState = MutableStateFlow<AuthorizationNeed>(NotRequested)
-
-  private val loginInteractor: LoginInteractor by lazy { GraphDI.loginInteractor }
 
   fun requestAuthNeed() {
     viewModelScope.launch {

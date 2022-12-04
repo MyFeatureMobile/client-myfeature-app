@@ -13,7 +13,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.myfeature.mobile.core.theme.BlueGreen
 import com.myfeature.mobile.core.theme.White
 import com.myfeature.mobile.core.utils.Functions
@@ -23,6 +22,7 @@ import com.myfeature.mobile.ui.beginner.loading.AuthorizationNeed.NoNeedAuthoriz
 import com.myfeature.mobile.ui.beginner.loading.AuthorizationNeed.NotRequested
 import com.myfeature.mobile.ui.common.Logo
 import kotlinx.coroutines.flow.collectLatest
+import org.koin.androidx.compose.koinViewModel
 
 private val paddingButtons = 4.dp
 
@@ -32,7 +32,7 @@ fun LoadingView(
   onLoggedIn: () -> Unit = Functions::empty,
   onNeedToAuth: () -> Unit = Functions::empty
 ) {
-  val loadingViewModel: LoadingViewModel = viewModel()
+  val loadingViewModel: LoadingViewModel = koinViewModel()
   LoadingIndicator(modifier = modifier)
   LaunchedEffect(key1 = Unit) {
     loadingViewModel.needToAuthorizeState.collectLatest { need ->

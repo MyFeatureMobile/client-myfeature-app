@@ -3,11 +3,10 @@ package com.myfeature.mobile.ui.home.profile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.myfeature.mobile.data.AuthStorage
-import com.myfeature.mobile.data.ProfileRepository
 import com.myfeature.mobile.data.model.UserProfile
-import com.myfeature.mobile.di.GraphDI
 import com.myfeature.mobile.domain.LoginInteractor
-import com.myfeature.mobile.domain.UserPostsInteractor
+import com.myfeature.mobile.domain.repository.ProfileRepository
+import com.myfeature.mobile.domain.repository.UserPostsRepository
 import com.myfeature.mobile.ui.home.profile.ProfileContent.FollowersContent
 import com.myfeature.mobile.ui.home.profile.ProfileContent.FollowingContent
 import com.myfeature.mobile.ui.home.profile.ProfileContent.PostsContent
@@ -26,7 +25,11 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
-class ProfileViewModel : ViewModel() {
+class ProfileViewModel(
+  private val loginInteractor: LoginInteractor,
+  private val profileRepository: ProfileRepository,
+  private val userPostsRepository: UserPostsRepository
+) : ViewModel() {
 
   val profileState: Flow<ProfileState?>
     get() = _state.asStateFlow()
@@ -44,10 +47,6 @@ class ProfileViewModel : ViewModel() {
     get() = _contentState.filterNotNull()
 
   private val _contentState: MutableStateFlow<ProfileContent?> = MutableStateFlow(null)
-
-  private val loginInteractor: LoginInteractor = GraphDI.loginInteractor
-  private val profileRepository: ProfileRepository = GraphDI.profileRepository
-  private val userPostsInteractor: UserPostsInteractor = GraphDI.userPostsInteractor
 
   private var loadProfileJob: Job? = null
   private var waitingFirstDataJob: Job? = null
@@ -97,7 +96,7 @@ class ProfileViewModel : ViewModel() {
   private suspend fun loadDataForCategory(chosenCategory: Category) {
     when (chosenCategory) {
       POSTS -> {
-        val posts = userPostsInteractor.getUserPosts(AuthStorage.userId)
+        val posts = userPostsRepository.getUsersPosts(AuthStorage.userId)
         _contentState.value = PostsContent(posts)
       }
       FOLLOWERS -> {

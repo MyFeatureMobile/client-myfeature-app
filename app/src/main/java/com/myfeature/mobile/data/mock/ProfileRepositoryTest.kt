@@ -1,21 +1,16 @@
-package com.myfeature.mobile.data
+package com.myfeature.mobile.data.mock
 
-import com.myfeature.mobile.data.TestData.userProfile
+import com.myfeature.mobile.core.coroutines.AppDispatchers
+import com.myfeature.mobile.data.mock.TestData.userProfile
 import com.myfeature.mobile.data.model.UserProfile
-import com.myfeature.mobile.di.GraphDI
+import com.myfeature.mobile.domain.repository.ProfileRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
-
-interface ProfileRepository {
-
-  suspend fun getProfile(userId: String): UserProfile
-
-  suspend fun updateProfile(userName: String, email: String, description: String)
-}
+import org.koin.java.KoinJavaComponent.inject
 
 class ProfileRepositoryTest : ProfileRepository {
 
-  private val appDispatchers = GraphDI.appDispatchers
+  private val appDispatchers: AppDispatchers by inject(AppDispatchers::class.java)
 
   override suspend fun getProfile(userId: String): UserProfile {
     return withContext(appDispatchers.io()) {

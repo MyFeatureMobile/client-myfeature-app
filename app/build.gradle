@@ -80,11 +80,9 @@ dependencies {
 
   implementation("io.coil-kt:coil-compose:2.0.0-rc01")
 
-  def pager_version = "0.25.1"
-  implementation "com.google.accompanist:accompanist-pager:$pager_version"
-
-  // If using indicators, also depend on
-  implementation "com.google.accompanist:accompanist-pager-indicators:$pager_version"
+  def accompanist_version = "0.25.1"
+  implementation "com.google.accompanist:accompanist-pager:$accompanist_version"
+  implementation "com.google.accompanist:accompanist-pager-indicators:$accompanist_version"
 
   // Secured sp
   implementation "androidx.security:security-crypto:1.0.0-alpha02"
@@ -93,5 +91,14 @@ dependencies {
   implementation 'com.jakewharton.timber:timber:5.0.1'
 
   // Refresh
-  implementation "com.google.accompanist:accompanist-swiperefresh:0.25.1"
+  implementation "com.google.accompanist:accompanist-swiperefresh:$accompanist_version"
+
+  // Retrofit
+  implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+  implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+  implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:1.0.0'
+
+  // DI with Koin 3
+  def koin_version = "3.2.2"
+  implementation "io.insert-koin:koin-androidx-compose:$koin_version"
 }

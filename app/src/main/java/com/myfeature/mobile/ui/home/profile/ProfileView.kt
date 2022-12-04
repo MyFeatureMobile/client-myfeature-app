@@ -16,7 +16,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.myfeature.mobile.core.utils.Functions
@@ -28,6 +27,7 @@ import com.myfeature.mobile.ui.home.profile.ProfileContent.PostsContent
 import com.myfeature.mobile.ui.home.profile.header.ProfileHeaderView
 import com.myfeature.mobile.ui.home.profile.model.Category.POSTS
 import com.myfeature.mobile.ui.home.profile.model.PostItem
+import org.koin.androidx.compose.koinViewModel
 
 val topBarShape = RoundedCornerShape(bottomEnd = 15.dp, bottomStart = 15.dp, topStart = 0.dp, topEnd = 0.dp)
 val DEFAULT_PRESELECTED_CATEGORY = POSTS
@@ -40,7 +40,7 @@ fun ProfileView(
   onLogOut: () -> Unit = Functions::empty,
   onEditProfile: () -> Unit = Functions::empty
 ) {
-  val profileViewModel: ProfileViewModel = viewModel()
+  val profileViewModel: ProfileViewModel = koinViewModel()
   val state = profileViewModel.profileState.collectAsState(initial = null)
   val content = profileViewModel.contentState.collectAsState(initial = Empty())
   val refreshing by profileViewModel.refreshing.collectAsState()

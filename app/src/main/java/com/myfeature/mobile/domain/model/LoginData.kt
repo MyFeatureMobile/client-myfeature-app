@@ -1,4 +1,4 @@
-package com.myfeature.mobile.domain
+package com.myfeature.mobile.domain.model
 
 import android.os.Parcel
 import android.os.Parcelable
