@@ -4,7 +4,7 @@ import com.myfeature.mobile.ui.home.profile.model.PostItem
 
 interface UserPostsRepository {
 
-  suspend fun getUsersPosts(userId: String): List<PostItem>
+  suspend fun getUsersPosts(userId: Long): List<PostItem>
 
   suspend fun getFollowingPostsForUser(): List<PostItem>
 

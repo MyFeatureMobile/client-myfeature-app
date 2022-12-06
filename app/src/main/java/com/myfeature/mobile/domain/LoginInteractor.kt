@@ -5,6 +5,7 @@ import com.myfeature.mobile.data.LoginDataLocalStorage
 import com.myfeature.mobile.data.model.AuthParams
 import com.myfeature.mobile.data.model.AuthResponse
 import com.myfeature.mobile.data.model.StoredLoginData
+import com.myfeature.mobile.data.model.UserResponse
 import com.myfeature.mobile.domain.repository.LoginRepository
 import org.koin.java.KoinJavaComponent.get
 
@@ -17,7 +18,7 @@ class LoginInteractor(
     return loginLocalStorage.getDataFromStorage()
   }
 
-  suspend fun authorize(userName: String, password: String): AuthResponse? {
+  suspend fun authorize(userName: String, password: String): UserResponse? {
     return loginRepository.authorize(AuthParams(userName, password))
   }
 

@@ -1,20 +1,18 @@
 package com.myfeature.mobile.data
 
-import com.myfeature.mobile.data.model.AuthResponse
+import com.myfeature.mobile.data.model.UserResponse
 
 object AuthStorage {
 
   var token: String = ""
 
-  var userId: String = ""
+  var userId: Long = 0L
 
-  fun saveAuthData(data: AuthResponse) {
-    token = data.token
-    userId = data.userId
+  fun saveAuthData(data: UserResponse) {
+    userId = data.userId ?: 0
   }
 
   fun clear() {
-    token = ""
-    userId = ""
+    userId = 0
   }
 }

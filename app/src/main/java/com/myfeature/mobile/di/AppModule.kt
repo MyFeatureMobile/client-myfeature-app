@@ -10,6 +10,7 @@ import com.myfeature.mobile.core.utils.DataSourceStrategy.REAL_DATA_USED
 import com.myfeature.mobile.core.utils.dataStrategy
 import com.myfeature.mobile.data.LoginDataLocalStorage
 import com.myfeature.mobile.data.LoginRepositoryImpl
+import com.myfeature.mobile.data.PhotoRepository
 import com.myfeature.mobile.data.PostRepositoryImpl
 import com.myfeature.mobile.data.ProfileRepositoryImpl
 import com.myfeature.mobile.data.RegisterRepositoryImpl
@@ -34,6 +35,7 @@ import com.myfeature.mobile.ui.home.post.create.PostCreateViewModel
 import com.myfeature.mobile.ui.home.profile.ProfileViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import okhttp3.logging.HttpLoggingInterceptor.Level
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.factoryOf
@@ -77,11 +79,13 @@ object AppModule {
         factory { createRetrofit(get()) }
         factory { createMyFeatureApi(get()) }
 
-        factoryOf<LoginRepository>(::LoginRepositoryTest)
-//        factoryOf<LoginRepository>(::LoginRepositoryImpl)
+        factoryOf<PhotoRepository>(::PhotoRepository)
 
-        factoryOf<ProfileRepository>(::ProfileRepositoryTest)
-//        factoryOf<ProfileRepository>(::ProfileRepositoryImpl)
+//        factoryOf<LoginRepository>(::LoginRepositoryTest)
+        factoryOf<LoginRepository>(::LoginRepositoryImpl)
+
+//        factoryOf<ProfileRepository>(::ProfileRepositoryTest)
+        factoryOf<ProfileRepository>(::ProfileRepositoryImpl)
 
         single<PostRepository> { PostRepositoryTest() }
 //        factoryOf<PostRepository>(::PostRepositoryImpl)
@@ -105,6 +109,7 @@ object AppModule {
 
   private fun Module.realDataSources() {
     factoryOf<LoginRepository>(::LoginRepositoryImpl)
+    factoryOf<PhotoRepository>(::PhotoRepository)
     factoryOf<ProfileRepository>(::ProfileRepositoryImpl)
     factoryOf<PostRepository>(::PostRepositoryImpl)
     factoryOf<UserPostsRepository>(::UserPostsRepositoryImpl)
@@ -116,10 +121,9 @@ object AppModule {
   }
 
   private fun createRetrofit(gson: Gson): Retrofit {
-    val client = OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor()).build()
+    val client = OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor().apply { setLevel(Level.BODY) }).build()
     return Retrofit.Builder()
-      .addConverterFactory(GsonConverterFactory.create(gson))
-      .callFactory { client.newCall(it) }
+      .addConverterFactory(GsonConverterFactory.create())
       .baseUrl(API_URL)
       .client(client)
       .build()

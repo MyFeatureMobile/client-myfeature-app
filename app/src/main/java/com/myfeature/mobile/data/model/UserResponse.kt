@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 class UserResponse(
   @SerializedName("user_id")
-  val userId: Long = 0,
+  val userId: Long,
 
   @SerializedName("username")
   val username: String? = null,
@@ -36,7 +36,7 @@ class UserResponse(
 
 class Avatar(
   @SerializedName("photo_id")
-  val photoId: String? = null,
+  val photoId: Long? = null,
 
   @SerializedName("url")
   val url: String? = null

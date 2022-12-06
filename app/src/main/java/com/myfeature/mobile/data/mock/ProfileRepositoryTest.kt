@@ -12,7 +12,7 @@ class ProfileRepositoryTest : ProfileRepository {
 
   private val appDispatchers: AppDispatchers by inject(AppDispatchers::class.java)
 
-  override suspend fun getProfile(userId: String): UserProfile {
+  override suspend fun getProfile(userId: Long): UserProfile {
     return withContext(appDispatchers.io()) {
       delay(500)
       userProfile

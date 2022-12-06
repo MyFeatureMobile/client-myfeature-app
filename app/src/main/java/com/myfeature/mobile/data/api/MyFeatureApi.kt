@@ -1,23 +1,46 @@
 package com.myfeature.mobile.data.api
 
+import com.myfeature.mobile.data.model.AuthParams
+import com.myfeature.mobile.data.model.AuthResponse
 import com.myfeature.mobile.data.model.CreatePostParams
 import com.myfeature.mobile.data.model.CreatePostResponse
 import com.myfeature.mobile.data.model.CreateUserParams
+import com.myfeature.mobile.data.model.feature.LoadedPhoto
+import com.myfeature.mobile.data.model.feature.PhotoUrl
 import com.myfeature.mobile.data.model.UserResponse
-import com.myfeature.mobile.domain.model.UserProfile
+import com.myfeature.mobile.data.model.feature.FeatureResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MyFeatureApi {
 
-  @POST("feature")
-  fun createPost(@Body post: CreatePostParams): CreatePostResponse
+  @POST("features")
+  suspend fun createPost(@Body post: CreatePostParams): CreatePostResponse
 
-  @GET("user/{user}")
-  fun getProfile(@Query("user") userId: String): UserProfile
+  @GET("features")
+  suspend fun getPosts(): List<FeatureResponse>
+
+  @GET("users/{user}")
+  suspend fun getProfile(@Path("user") userId: Long): UserResponse
 
   @POST("users")
-  fun createUser(@Body user: CreateUserParams): UserResponse
+  suspend fun createUser(@Body user: CreateUserParams): UserResponse
+
+  @POST("photos")
+  suspend fun loadPhoto(@Body url: PhotoUrl): LoadedPhoto
+
+  @GET("photo/{id}")
+  suspend fun getPhotoById(@Path("id") id: Long): PhotoUrl
+
+  @POST("users/desc/{id}")
+  suspend fun updateDescription(@Path("id") userId: Long, userName: String)
+
+  @POST("users/access")
+  suspend fun authorize(@Body data: AuthParams): UserResponse
+
+  @POST("users/photo/{user_id}")
+  suspend fun updateUserAvatar(@Path("user_id") userId: Long, photoId: Long)
 }

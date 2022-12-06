@@ -5,7 +5,7 @@ import com.myfeature.mobile.ui.home.profile.model.PostItem
 
 class UserPostsRepositoryTest : UserPostsRepository {
 
-  override suspend fun getUsersPosts(userId: String): List<PostItem> {
+  override suspend fun getUsersPosts(userId: Long): List<PostItem> {
     return TestData.posts
   }
 

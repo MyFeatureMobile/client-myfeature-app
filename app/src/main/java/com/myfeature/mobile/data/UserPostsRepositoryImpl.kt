@@ -9,7 +9,7 @@ class UserPostsRepositoryImpl(
   private val myFeatureApi: MyFeatureApi = KoinJavaComponent.get(MyFeatureApi::class.java)
 ) : UserPostsRepository {
 
-  override suspend fun getUsersPosts(userId: String): List<PostItem> {
+  override suspend fun getUsersPosts(userId: Long): List<PostItem> {
     TODO("Not yet implemented")
   }
 
