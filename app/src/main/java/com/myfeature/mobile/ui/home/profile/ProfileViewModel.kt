@@ -129,6 +129,15 @@ class ProfileViewModel(
     }
   }
 
+  fun updateAvatar(photoUrl: String) {
+    viewModelScope.launch {
+      _refreshing.value = true
+      profileRepository.updateUserPhoto(photoUrl)
+      loadData()
+      _refreshing.value = false
+    }
+  }
+
   override fun onCleared() {
     super.onCleared()
     loadProfileJob?.cancel()

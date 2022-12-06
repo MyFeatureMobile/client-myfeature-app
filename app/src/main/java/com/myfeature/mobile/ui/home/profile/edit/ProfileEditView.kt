@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
@@ -148,6 +149,42 @@ fun ProfileEditView(modifier: Modifier = Modifier, onUpdated: () -> Unit, onCanc
           )
         }
       }
+    }
+
+    val addPhotoUrlDialogShowing = remember { mutableStateOf(false) }
+    val photoUrlInput = remember { mutableStateOf("") }
+    if (addPhotoUrlDialogShowing.value) {
+      AlertDialog(
+        onDismissRequest = {
+          addPhotoUrlDialogShowing.value = false
+        },
+        title = {
+          Text(text = "Write photo url")
+        },
+        text = {
+          ScrollableTextField(
+            modifier = Modifier.padding(top = 6.dp),
+            value = photoUrlInput.value,
+            onValueChange = { photoUrlInput.value = it }
+          )
+        },
+        confirmButton = {
+          Button(
+            onClick = {
+              viewModel.updateAvatar(photoUrl = photoUrlInput.value)
+              addPhotoUrlDialogShowing.value = false
+            }) {
+            Text(text = "Done")
+          }
+        },
+        dismissButton = {
+          TextButton(onClick = {
+            addPhotoUrlDialogShowing.value = false
+          }) {
+            Text(text = "Cancel", fontWeight = FontWeight.Normal)
+          }
+        }
+      )
     }
   }
 }

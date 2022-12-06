@@ -2,9 +2,11 @@ package com.myfeature.mobile.data.api
 
 import com.myfeature.mobile.data.model.AuthParams
 import com.myfeature.mobile.data.model.AuthResponse
+import com.myfeature.mobile.data.model.AvatarParams
 import com.myfeature.mobile.data.model.CreatePostParams
 import com.myfeature.mobile.data.model.CreatePostResponse
 import com.myfeature.mobile.data.model.CreateUserParams
+import com.myfeature.mobile.data.model.UpdateDescriptionParams
 import com.myfeature.mobile.data.model.feature.LoadedPhoto
 import com.myfeature.mobile.data.model.feature.PhotoUrl
 import com.myfeature.mobile.data.model.UserResponse
@@ -36,11 +38,11 @@ interface MyFeatureApi {
   suspend fun getPhotoById(@Path("id") id: Long): PhotoUrl
 
   @POST("users/desc/{id}")
-  suspend fun updateDescription(@Path("id") userId: Long, userName: String)
+  suspend fun updateDescription(@Path("id") userId: Long, @Body description: UpdateDescriptionParams)
+
+  @POST("users/photo/{id}")
+  suspend fun updateUserAvatar(@Path("id") userId: Long, @Body photoId: AvatarParams)
 
   @POST("users/access")
   suspend fun authorize(@Body data: AuthParams): UserResponse
-
-  @POST("users/photo/{user_id}")
-  suspend fun updateUserAvatar(@Path("user_id") userId: Long, photoId: Long)
 }

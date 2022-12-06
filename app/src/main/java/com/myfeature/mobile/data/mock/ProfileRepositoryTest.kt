@@ -24,4 +24,10 @@ class ProfileRepositoryTest : ProfileRepository {
       delay(500)
     }
   }
+
+  override suspend fun updateUserPhoto(newPhotoUrl: String) {
+    return withContext(appDispatchers.io()) {
+      delay(500)
+    }
+  }
 }

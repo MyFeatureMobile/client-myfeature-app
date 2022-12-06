@@ -7,4 +7,5 @@ interface ProfileRepository {
   suspend fun getProfile(userId: Long): UserProfile
 
   suspend fun updateProfile(userName: String, email: String, description: String)
+  suspend fun updateUserPhoto(newPhotoUrl: String)
 }
