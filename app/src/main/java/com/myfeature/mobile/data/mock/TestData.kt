@@ -17,17 +17,17 @@ object TestData {
 
   val posts = listOf<PostItem>(
     PostItem(
-      id = "2",
+      id = "2".toLong(),
       photoUrls = listOf("https://img.freepik.com/free-vector/smart-home-application_23-2148627263.jpg?w=2000&t=st=1668187263~exp=1668187863~hmac=fc502f8163dd1d2d50c6f9ad3ad88ced7ada33e7b5ca7ec646fdb538882a2a44"),
       4
     ),
     PostItem(
-      id = "2",
+      id = "2".toLong(),
       photoUrls = listOf("https://img.freepik.com/free-vector/smart-home-application_23-2148627263.jpg?w=2000&t=st=1668187263~exp=1668187863~hmac=fc502f8163dd1d2d50c6f9ad3ad88ced7ada33e7b5ca7ec646fdb538882a2a44"),
       4
     ),
     PostItem(
-      id = "2",
+      id = "2".toLong(),
       photoUrls = listOf("https://img.freepik.com/free-vector/smart-home-application_23-2148627263.jpg?w=2000&t=st=1668187263~exp=1668187863~hmac=fc502f8163dd1d2d50c6f9ad3ad88ced7ada33e7b5ca7ec646fdb538882a2a44"),
       4
     ),
@@ -35,29 +35,29 @@ object TestData {
 
   val users = listOf(
     UserOnPost(
-      userId = "3",
+      userId = "3".toLong(),
       nickname = "elena_elenovna",
       userPhotoUrl = "https://cdn.thetealmango.com/wp-content/uploads/2022/02/yael-shelbia-pic.jpg"
     ),
     UserOnPost(
-      userId = "3",
+      userId = "3".toLong(),
       nickname = "elena_elenovna",
       userPhotoUrl = "https://cdn.thetealmango.com/wp-content/uploads/2022/02/yael-shelbia-pic.jpg"
     ),
     UserOnPost(
-      userId = "3",
+      userId = "3".toLong(),
       nickname = "elena_elenovna",
       userPhotoUrl = "https://cdn.thetealmango.com/wp-content/uploads/2022/02/yael-shelbia-pic.jpg"
     ),
     UserOnPost(
-      userId = "3",
+      userId = "3".toLong(),
       nickname = "elena_elenovna",
       userPhotoUrl = "https://cdn.thetealmango.com/wp-content/uploads/2022/02/yael-shelbia-pic.jpg"
     )
   )
 
   val post = PostModel(
-    id = "2",
+    id = "2".toLong(),
     photoUrls = photos,
     likesCount = 1234,
     liked = false,

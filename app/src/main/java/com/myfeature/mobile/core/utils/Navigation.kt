@@ -1,4 +1,4 @@
-package com.myfeature.mobile.ui.common
+package com.myfeature.mobile.core.utils
 
 import android.os.Parcelable
 import androidx.navigation.NavBackStackEntry

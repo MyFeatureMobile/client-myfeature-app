@@ -43,9 +43,9 @@ import com.myfeature.mobile.ui.home.post.model.PostModel
 @Composable
 fun PostNamePhotosView(
   modifier: Modifier = Modifier,
-  postState: MutableState<PostModel> = remember { mutableStateOf(TestData.post) }
+  postState: PostModel
 ) {
-  val post = postState.value
+  val post = postState
   ConstraintLayout(
     modifier = modifier
       .background(color = MaterialTheme.colors.barBackground, shape = RoundedCornerShape(15.dp))
@@ -117,7 +117,7 @@ fun PostNamePhotosView(
             top.linkTo(postPhotos.bottom)
             start.linkTo(postPhotos.start)
           }
-          .clickable { postState.value = postState.value.copy(liked = false) },
+          .clickable {  },
       )
     } else {
       Icon(
@@ -130,14 +130,8 @@ fun PostNamePhotosView(
             top.linkTo(postPhotos.bottom)
             start.linkTo(postPhotos.start)
           }
-          .clickable { postState.value = postState.value.copy(liked = true) },
+          .clickable {  },
       )
     }
   }
-}
-
-@Preview
-@Composable
-fun PostNamePhotoPreview() {
-  PostNamePhotosView()
 }

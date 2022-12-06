@@ -25,6 +25,9 @@ interface MyFeatureApi {
   @GET("features")
   suspend fun getPosts(): List<FeatureResponse>
 
+  @GET("features/{id}")
+  suspend fun getPost(@Path("id") postId: Long): FeatureResponse
+
   @GET("users/{user}")
   suspend fun getProfile(@Path("user") userId: Long): UserResponse
 
@@ -45,4 +48,5 @@ interface MyFeatureApi {
 
   @POST("users/access")
   suspend fun authorize(@Body data: AuthParams): UserResponse
+
 }

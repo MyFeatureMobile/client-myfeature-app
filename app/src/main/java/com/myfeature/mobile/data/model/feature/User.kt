@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.myfeature.mobile.data.model.Avatar
 
 data class User(
-  @SerializedName("user_id") var userId: Int? = null,
+  @SerializedName("user_id") var userId: Long? = null,
   @SerializedName("username") var username: String? = null,
   @SerializedName("firstName") var firstName: String? = null,
   @SerializedName("lastName") var lastName: String? = null,

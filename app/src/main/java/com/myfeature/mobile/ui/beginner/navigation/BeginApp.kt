@@ -20,8 +20,8 @@ import com.myfeature.mobile.ui.beginner.navigation.BeginnerDestinations.REGISTER
 import com.myfeature.mobile.ui.beginner.navigation.BeginnerDestinations.WELCOME_ROUTE
 import com.myfeature.mobile.ui.beginner.register.FinishRegisterView
 import com.myfeature.mobile.ui.beginner.register.RegisterView
-import com.myfeature.mobile.ui.common.navigate
-import com.myfeature.mobile.ui.common.requiredArg
+import com.myfeature.mobile.core.utils.navigate
+import com.myfeature.mobile.core.utils.requiredArg
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable

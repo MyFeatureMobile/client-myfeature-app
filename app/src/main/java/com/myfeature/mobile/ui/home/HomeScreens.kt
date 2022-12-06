@@ -11,7 +11,7 @@ import com.myfeature.mobile.ui.home.HomeScreens.PROFILE
 import com.myfeature.mobile.ui.home.HomeScreens.TIMELINE
 import com.myfeature.mobile.ui.home.MainDestinations.MAIN_ROUTE
 
-internal val DEFAULT_SCREEN = HomeScreens.FOLLOWING
+internal val DEFAULT_SCREEN = HomeScreens.TIMELINE
 
 enum class HomeScreens(
   @StringRes val title: Int,

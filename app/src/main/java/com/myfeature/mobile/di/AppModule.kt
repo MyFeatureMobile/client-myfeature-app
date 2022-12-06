@@ -31,8 +31,10 @@ import com.myfeature.mobile.domain.repository.UserPostsRepository
 import com.myfeature.mobile.ui.beginner.loading.LoadingViewModel
 import com.myfeature.mobile.ui.beginner.login.LoginViewModel
 import com.myfeature.mobile.ui.beginner.register.RegisterViewModel
+import com.myfeature.mobile.ui.home.post.PostViewModel
 import com.myfeature.mobile.ui.home.post.create.PostCreateViewModel
 import com.myfeature.mobile.ui.home.profile.ProfileViewModel
+import com.myfeature.mobile.ui.home.timeline.TimelineViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
@@ -57,6 +59,8 @@ object AppModule {
     viewModelOf(::RegisterViewModel)
     viewModelOf(::PostCreateViewModel)
     viewModelOf(::ProfileViewModel)
+    viewModelOf(::PostViewModel)
+    viewModelOf(::TimelineViewModel)
   }
 
   private fun Module.baseDependencies() {
@@ -87,8 +91,8 @@ object AppModule {
 //        factoryOf<ProfileRepository>(::ProfileRepositoryTest)
         factoryOf<ProfileRepository>(::ProfileRepositoryImpl)
 
-        single<PostRepository> { PostRepositoryTest() }
-//        factoryOf<PostRepository>(::PostRepositoryImpl)
+//        single<PostRepository> { PostRepositoryTest() }
+        factoryOf<PostRepository>(::PostRepositoryImpl)
 
         single<UserPostsRepository> { UserPostsRepositoryTest() }
 //        factoryOf<UserPostsRepository>(::UserPostsRepositoryImpl)

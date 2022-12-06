@@ -41,7 +41,12 @@ import com.myfeature.mobile.ui.home.profile.header.AvatarPhotoView
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun ProfileEditView(modifier: Modifier = Modifier, onUpdated: () -> Unit, onCancel: () -> Unit) {
+fun ProfileEditView(
+  modifier: Modifier = Modifier,
+  onUpdated: () -> Unit,
+  onCancel: () -> Unit,
+  onPostClick: (Long) -> Unit
+) {
   val viewModel: ProfileViewModel = viewModel()
   val profile = viewModel.profileState.collectAsState(initial = null).value
   val refreshing = viewModel.refreshing.collectAsState()
