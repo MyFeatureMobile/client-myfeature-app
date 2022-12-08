@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 class CreatePostParams(
   @SerializedName("photo")
-  val photoUrl: List<String>,
-  @SerializedName("description")
+  val photoUrl: Long,
+  @SerializedName("name")
   val description: String,
-  @SerializedName("link")
-  val githubLink: String,
   @SerializedName("content")
-  val code: String
+  val code: String,
+  @SerializedName("user")
+  val userId: Long
 )

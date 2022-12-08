@@ -12,14 +12,18 @@ import com.myfeature.mobile.ui.home.post.model.UserOnPost
 import com.myfeature.mobile.ui.home.profile.model.PostItem
 import org.koin.java.KoinJavaComponent.get
 
-class PostRepositoryImpl(private val myFeatureApi: MyFeatureApi = get(MyFeatureApi::class.java)) : PostRepository {
+class PostRepositoryImpl(
+  private val myFeatureApi: MyFeatureApi = get(MyFeatureApi::class.java),
+  private val photoRepository: PhotoRepository = get(PhotoRepository::class.java)
+) : PostRepository {
 
   override suspend fun createPost(post: PostCreateState) {
-    myFeatureApi.createPost(post.toFeaturePost())
+    val loadedPhoto = photoRepository.addPhoto(post.photoUrl.first())
+    myFeatureApi.createPost(post.toFeaturePost(loadedPhoto))
   }
 
   override suspend fun getPosts(): List<PostItem> {
-    return myFeatureApi.getPosts().map { it.toPostItem() }
+    return myFeatureApi.getPosts().map { it.toPostItem() }.asReversed()
   }
 
   override suspend fun getPostById(postId: Long): PostModel? {
@@ -43,7 +47,7 @@ private fun FeatureResponse.toPostModel(): PostModel {
   )
 }
 
-private fun FeatureResponse.toPostItem(): PostItem {
+fun FeatureResponse.toPostItem(): PostItem {
   return PostItem(
     id = featureId ?: 0,
     photoUrls = photo?.url?.let { listOf(it) } ?: emptyList(),

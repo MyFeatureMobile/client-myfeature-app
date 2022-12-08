@@ -3,6 +3,7 @@ package com.myfeature.mobile.ui.beginner.register
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.myfeature.mobile.core.coroutines.AppDispatchers
+import com.myfeature.mobile.data.AuthStorage
 import com.myfeature.mobile.domain.LoginInteractor
 import com.myfeature.mobile.domain.RegisterInteractor
 import kotlinx.coroutines.flow.Flow
@@ -37,7 +38,8 @@ class RegisterViewModel(
         val username = _registerState.value.userName
         val password = _registerState.value.password
         registerInteractor.registerWithParams(username, password)
-        loginInteractor.authorize(username, password)
+        val response = loginInteractor.authorize(username, password)
+        response?.let { AuthStorage.saveAuthData(it) }
         loginInteractor.saveData(username, password)
         withContext(appDispatchers.main()) {
           onAccountCreated.invoke(username, password)

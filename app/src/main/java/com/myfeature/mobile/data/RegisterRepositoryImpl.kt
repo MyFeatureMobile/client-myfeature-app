@@ -5,7 +5,6 @@ import com.myfeature.mobile.data.api.MyFeatureApi
 import com.myfeature.mobile.data.mapper.toUserProfile
 import com.myfeature.mobile.data.model.AvatarParams
 import com.myfeature.mobile.data.model.CreateUserParams
-import com.myfeature.mobile.data.model.UserResponse
 import com.myfeature.mobile.domain.model.LoginData
 import com.myfeature.mobile.domain.model.UserProfile
 import com.myfeature.mobile.domain.repository.RegisterRepository
@@ -19,7 +18,7 @@ class RegisterRepositoryImpl(
   override suspend fun register(loginData: LoginData): UserProfile {
     val res = myFeatureApi.createUser(loginData.toCreateUserParams())
     val loadedPhoto = photoRepository.addPhoto(DEFAULT_AVATAR)
-    myFeatureApi.updateUserAvatar(AuthStorage.userId, AvatarParams(loadedPhoto.id))
+    myFeatureApi.updateUserAvatar(res.userId, AvatarParams(loadedPhoto.id))
     return res.toUserProfile(DEFAULT_AVATAR)
   }
 

@@ -94,8 +94,8 @@ object AppModule {
 //        single<PostRepository> { PostRepositoryTest() }
         factoryOf<PostRepository>(::PostRepositoryImpl)
 
-        single<UserPostsRepository> { UserPostsRepositoryTest() }
-//        factoryOf<UserPostsRepository>(::UserPostsRepositoryImpl)
+//        single<UserPostsRepository> { UserPostsRepositoryTest() }
+        factoryOf<UserPostsRepository>(::UserPostsRepositoryImpl)
 
 //        single<RegisterRepository> { RegisterRepositoryTest() }
         factoryOf<RegisterRepository>(::RegisterRepositoryImpl)
